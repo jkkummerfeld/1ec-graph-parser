@@ -1,0 +1,535 @@
+% File: rules.tex
+%
+% Contact: Jonathan Kummerfeld (jkk@berkeley.edu)
+
+%   count  | rule | result       | input                             | algorithms
+%   
+%   323461 |  0   | ___ I F_F___ | ___I ___I | F_F___ J_F___ | i+ __ | all | all
+%    32730 |  0   | ___ I F_F___ | ___I ___I | F_F___ j_F___ | i+ __ | all | all
+%   421008 |  1   | ___ I F_F___ | ___I ___I | F_I___ F_F___ | __ __ | all | all
+%     1960 |  1   | ___ I F_i___ | ___I ___I | F_I___ F_I___ | __ __ | all | all
+%      363 |  1   | ___ I F_F___ | ___I ___I | F_I___ J_F___ | __ __ | graph | all
+%      253 |  1   | ___ I F_i___ | ___I ___I | F_I___ F_i___ | __ __ | all | all
+%        3 |  1   | ___ I F_F___ | ___I ___I | F_I___ j_F___ | __ __ | graph | all
+%      587 |  2   | ___ I F_F___ | -_.N ___I | FFIFFF J_F___ | j1 __ | graph | 1ec
+%      251 |  2   | ___ I F_i___ | -_.L ___I | FFIFiF F_F___ | j1 __ | all | 1ec
+%      244 |  2   | ___ I F_i___ | -_.N ___I | FFIFiF F_F___ | j1 __ | all | 1ec
+%       69 |  2   | ___ I F_F___ | -_.N ___I | FFIFFF F_F___ | j1 __ | all | 1ec
+%       32 |  2   | ___ I F_F___ | =_.N ___I | FFIFFF J_F___ | j1 __ | graph | 1ec
+%       16 |  2   | ___ I F_i___ | -_.L ___I | FFIFiF F_i___ | j1 __ | graph | 1ec
+%       14 |  2   | ___ I F_F___ | -_.L ___I | FFIFFF F_F___ | j1 __ | all | 1ec
+%        8 |  2   | ___ I F_i___ | -_.L ___I | FFIFiF F_I___ | j1 __ | graph | 1ec
+%        4 |  2   | ___ I F_i___ | -_.N ___I | FFIFFF F_I___ | j1 __ | all | 1ec
+%        2 |  2   | ___ I F_i___ | -_.N ___I | FFIFFF F_i___ | j1 __ | all | 1ec
+%        1 |  2   | ___ I F_F___ | =_.N ___I | FFIxFF J_F___ | j1 __ | graph | 1ec
+%        1 |  2   | ___ I F_i___ | -_.L ___I | FFIFiF J_F___ | j1 __ | graph | 1ec
+%        1 |  2   | ___ I F_i___ | -_.R ___I | FFIFiF F_F___ | j1 __ | all | 1ec
+%      127 |  3   | ___ I F_F___ | -_.N ___I -._N | FFIFFF F_I___ FFFFFF | j1 __ j0 | all | 1ec
+%      116 |  3   | ___ I F_F___ | -_.N ___I =._N | FFIFFF F_I___ FFFFFF | j1 __ j0 | all | 1ec
+%       68 |  3   | ___ I F_F___ | -_.R ___I -._N | FFIFFF F_I___ FFFFFF | j1 __ j0 | all | 1ec
+%       61 |  3   | ___ I F_F___ | -_.R ___I =._N | FFIFFF F_I___ FFFFFF | j1 __ j0 | all | 1ec
+%       26 |  3   | ___ I F_F___ | -_.N ___I -._N | FFIFFF F_i___ FFFFFF | j1 __ j0 | all | 1ec
+%       26 |  3   | ___ I F_F___ | -_.N ___I =._N | FFIFFF F_i___ FFFFFF | j1 __ j0 | all | 1ec
+%       19 |  3   | ___ I F_F___ | -_.R ___I -._N | FFIFFF F_i___ FFFFFF | j1 __ j0 | all | 1ec
+%       19 |  3   | ___ I F_F___ | -_.R ___I =._N | FFIFFF F_i___ FFFFFF | j1 __ j0 | all | 1ec
+%        7 |  3   | ___ I F_F___ | -_.N ___I -._N | FFIFFF F_F___ FxFFFF | j1 __ j0 | all | 1ec
+%        7 |  3   | ___ I F_F___ | -_.R ___I =._N | FFIFij F_I___ FFFFFF | j1 __ j0 | graph | 1ec
+%        5 |  3   | ___ I F_F___ | -_.R ___I -._N | FFIFij F_I___ FFFFFF | j1 __ j0 | graph | 1ec
+%        4 |  3   | ___ I F_F___ | -_.N ___I -._N | FFIFij F_F___ FxFFFF | j1 __ j0 | graph | 1ec
+%        4 |  3   | ___ I F_F___ | -_.N ___I -._N | FFIFij F_I___ FFFFFF | j1 __ j0 | graph | 1ec
+%        2 |  3   | ___ I F_F___ | -_.R ___I -._N | FFIFij F_F___ FxFFFF | j1 __ j0 | graph | 1ec
+%        1 |  3   | ___ I F_F___ | -_.N ___I =._N | FFIFij F_I___ FFFFFF | j1 __ j0 | graph | 1ec
+%        1 |  3   | ___ I F_F___ | -_.R ___I =._N | FFIFij F_F___ FxFFFF | j1 __ j0 | graph | 1ec
+%     2088 |  4   | ___ I F_F___ | -_.N ___I ___I | FFIFFF F_I___ F_F___ | j1 __ __ | all | 1ec
+%      852 |  4   | ___ I F_F___ | -_.R ___I ___I | FFIFFF F_I___ F_F___ | j1 __ __ | all | 1ec
+%      375 |  4   | ___ I F_F___ | -_.N ___I ___I | FFIFFF F_i___ F_F___ | j1 __ __ | all | 1ec
+%      231 |  4   | ___ I F_F___ | -_.R ___I ___I | FFIFFF F_i___ F_F___ | j1 __ __ | all | 1ec
+%       85 |  4   | ___ I F_F___ | -_.R ___I ___I | FFIFij F_I___ F_F___ | j1 __ __ | graph | 1ec
+%       80 |  4   | ___ I F_F___ | -_.N ___I ___I | FFIFij F_I___ F_F___ | j1 __ __ | graph | 1ec
+%       18 |  4   | ___ I F_F___ | -_.L ___I ___I | FFIFFF F_I___ F_F___ | j1 __ __ | all | 1ec
+%       10 |  4   | ___ I F_F___ | -_.L ___I ___I | FFIFiF F_I___ F_F___ | j1 __ __ | graph | 1ec
+%        5 |  4   | ___ I F_F___ | -_.L ___I ___I | FFIFiF F_F___ J_F___ | j1 __ __ | graph | 1ec
+%        5 |  4   | ___ I F_F___ | -_.N ___I ___I | FFIFiF F_I___ F_F___ | j1 __ __ | graph | 1ec
+%        2 |  4   | ___ I F_F___ | -_.L ___I ___I | FFIFiF F_i___ F_F___ | j1 __ __ | graph | 1ec
+%        2 |  4   | ___ I F_F___ | -_.N ___I ___I | FFIFiF F_i___ F_F___ | j1 __ __ | graph | 1ec
+%        1 |  4   | ___ I F_F___ | -_.L ___I ___I | FFIFFF F_i___ F_F___ | j1 __ __ | all | 1ec
+%        1 |  4   | ___ I F_F___ | -_.N ___I ___I | FFIFij F_i___ F_F___ | j1 __ __ | graph | 1ec
+%        1 |  4   | ___ I F_F___ | -_.R ___I ___I | FFIFij F_i___ F_F___ | j1 __ __ | graph | 1ec
+%        1 |  6   | ___ I F_i___ | __.X ___I =._N | FFIFIF F_I___ FFFxFF | j1 __ j0 | graph | 1ec
+%    66827 |  7   | ___ I j_F___ | ___I ___I | J_F___ J_F___ | __ __ | all | all
+%    20998 |  7   | ___ I j_F___ | ___I ___I | j_F___ J_F___ | __ __ | all | all
+%      806 |  8   | ___ I j_F___ | ___I -._L | J_F___ JFFFij | __ i0 | graph | 1ec
+%      204 |  8   | ___ I j_F___ | ___I -._N | F_F___ JFFFFj | __ i0 | all | 1ec
+%      200 |  8   | ___ I j_F___ | ___I -._N | J_F___ JFFFij | __ i0 | graph | 1ec
+%      111 |  8   | ___ I j_F___ | ___I -._L | J_F___ JFFFFF | __ i0 | all | 1ec
+%       23 |  8   | ___ I j_F___ | ___I -._N | J_F___ JFFFFF | __ i0 | all | 1ec
+%       21 |  8   | ___ I j_F___ | ___I -._R | F_F___ JFFFFj | __ i0 | all | 1ec
+%        1 |  8   | ___ I j_F___ | ___I -._L | F_F___ JFFFij | __ i0 | graph | 1ec
+%        1 |  8   | ___ I j_F___ | ___I -._N | F_F___ JFFFij | __ i0 | graph | 1ec
+%      860 |  9   | ___ I j_F___ | =_.N ___I -._L | FXFFFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
+%      374 |  9   | ___ I j_F___ | __.X ___I -._L | FXFFFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
+%      279 |  9   | ___ I j_F___ | =_.N ___I -._L | FxFFFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
+%      187 |  9   | ___ I j_F___ | __.X ___I -._N | FXFFFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
+%       71 |  9   | ___ I j_F___ | =_.N ___I -._L | FXFFFF J_F___ JFFFFF | j1 __ j0 | all | 1ec
+%       49 |  9   | ___ I j_F___ | =_.N ___I -._N | FXFFFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
+%       41 |  9   | ___ I j_F___ | __.X ___I -._L | FXFFFF J_F___ JFFFFF | j1 __ j0 | all | 1ec
+%       28 |  9   | ___ I j_F___ | =_.N ___I -._L | FxFFFF J_F___ JFFFFF | j1 __ j0 | all | 1ec
+%       28 |  9   | ___ I j_F___ | =_.N ___I -._N | FxFFFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
+%       21 |  9   | ___ I j_F___ | -_.N ___I -._L | FxFFFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
+%       11 |  9   | ___ I j_F___ | __.X ___I -._N | FXFFFF J_F___ JFFFFF | j1 __ j0 | all | 1ec
+%        4 |  9   | ___ I j_F___ | =_.N ___I -._N | FXFFFF J_F___ JFFFFF | j1 __ j0 | all | 1ec
+%        3 |  9   | ___ I j_F___ | -_.N ___I -._L | FxFxFF F_F___ JFFFFF | j1 __ j0 | all | 1ec
+%        3 |  9   | ___ I j_F___ | =_.N ___I -._N | FxFFFF J_F___ JFFFFF | j1 __ j0 | all | 1ec
+%        3 |  9   | ___ I j_F___ | __.X ___I -._L | FXIxFF F_F___ JFFFFF | j1 __ j0 | graph | 1ec
+%        2 |  9   | ___ I j_F___ | -_.N ___I -._L | FxFFFF J_F___ JFFFFF | j1 __ j0 | all | 1ec
+%        2 |  9   | ___ I j_F___ | -_.N ___I -._N | FxFFFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
+%        2 |  9   | ___ I j_F___ | __.X ___I -._L | FXIxFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
+%        2 |  9   | ___ I j_F___ | __.X ___I -._L | FXixFF F_F___ JFFFFF | j1 __ j0 | graph | 1ec
+%        1 |  9   | ___ I j_F___ | -_.N ___I -._L | FxFxFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
+%        1 |  9   | ___ I j_F___ | =_.N ___I -._L | FXFxFF F_F___ JFFFFF | j1 __ j0 | all | 1ec
+%        1 |  9   | ___ I j_F___ | =_.N ___I -._L | FXFxFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
+%        1 |  9   | ___ I j_F___ | __.X ___I -._L | FXixFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
+%        1 |  9   | ___ I j_F___ | __.X ___I -._N | FXIxFF F_F___ JFFFFF | j1 __ j0 | graph | 1ec
+%        1 |  9   | ___ I j_F___ | __.X ___I -._N | FXixFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
+%     1846 | 10   | ___ I j_F___ | ___I ___I -._L | J_F___ J_F___ JFFFij | __ __ j0 | graph | 1ec
+%      141 | 10   | ___ I j_F___ | ___I ___I -._L | j_F___ J_F___ JFFFij | __ __ j0 | graph | 1ec
+%      119 | 10   | ___ I j_F___ | ___I ___I -._N | J_F___ J_F___ JFFFij | __ __ j0 | graph | 1ec
+%       67 | 10   | ___ I j_F___ | ___I ___I -._L | J_F___ J_F___ JFFFFF | __ __ j0 | all | 1ec
+%        9 | 10   | ___ I j_F___ | ___I ___I -._N | j_F___ J_F___ JFFFij | __ __ j0 | graph | 1ec
+%        7 | 10   | ___ I j_F___ | ___I ___I -._N | J_F___ J_F___ JFFFFF | __ __ j0 | all | 1ec
+%        6 | 10   | ___ I j_F___ | ___I ___I -._L | j_F___ J_F___ JFFFFF | __ __ j0 | all | 1ec
+%        1 | 10   | ___ I j_F___ | ___I ___I -._L | J_F___ j_F___ JFFFFF | __ __ j0 | all | 1ec
+%        1 | 10   | ___ I j_F___ | ___I ___I -._N | j_F___ J_F___ JFFFFF | __ __ j0 | all | 1ec
+%      236 | 21   | -._ L FFFFFF | _._X -._N | FFIXFF FFFFFF | xP i0 | graph | 1ec
+%       84 | 21   | -._ L FFFFFF | _._X =._N | FFIXFF FFFFFF | xP i0 | graph | 1ec
+%       31 | 21   | -_. L FFFFFF | __.X -._N | FFIXFF FFFFFF | xP i0 | graph | 1ec
+%       10 | 21   | -._ L FFFFFF | _._X =._N | FFFXFF FxFFFF | xP i0 | graph | 1ec
+%        2 | 21   | -._ L FFFFFF | _._X -._N | FFFXFF FxFFFF | xP i0 | graph | 1ec
+%        2 | 21   | -._ L FFFFFF | _._X -._N | FFiXFF FFFFFF | xP i0 | graph | 1ec
+%        2 | 21   | -._ L FFFFFF | _._X =._N | FFIXFF FxFFFF | xP i0 | graph | 1ec
+%        2 | 21   | -_. L FFFFFF | __.X =._N | FFIXFF FFFFFF | xP i0 | graph | 1ec
+%     2609 | 22   | -._ L FFFFiF | _._X -._N | FFIFiJ FFFFFF | xP i0 | graph | 1ec
+%      904 | 22   | -._ L FFFFiF | _._X =._N | FFIFiJ FFFFFF | xP i0 | graph | 1ec
+%      647 | 22   | -._ L FFFFiF | _._X -._N | FFiFiJ FFFFFF | xP i0 | graph | 1ec
+%      212 | 22   | -_. L FFFFiF | __.X -._N | FFIFiJ FFFFFF | xP i0 | graph | 1ec
+%      162 | 22   | -._ L FFFFiF | _._X =._N | FFiFiJ FFFFFF | xP i0 | graph | 1ec
+%       42 | 22   | -_. L FFFFiF | __.X =._N | FFIFiJ FFFFFF | xP i0 | graph | 1ec
+%       25 | 22   | -_. L FFFFiF | __.X -._N | FFiFiJ FFFFFF | xP i0 | graph | 1ec
+%       12 | 22   | -_. L FFFFiF | __.X =._N | FFiFiJ FFFFFF | xP i0 | graph | 1ec
+%       10 | 22   | -._ L FFFFiF | _._X =._N | FFFFFJ FxFFFF | xP i0 | all | 1ec
+%        1 | 22   | -._ L FFFFiF | _._X -._N | FFFFFJ FxFFFF | xP i0 | all | 1ec
+%        1 | 22   | -_. L FFFFiF | __.X -._N | FFFFFJ FxFFFF | xP i0 | all | 1ec
+%        1 | 22   | -_. L FFFFiF | __.X =._N | FFIFiJ FxFFFF | xP i0 | graph | 1ec
+%     2709 | 29   | =._ N FFFFFF | =._N ___I | FFFXFF F_F___ | xP __ | all | 1ec
+%       45 | 29   | =._ N FxFFFF | =._N ___I | FxFXFF F_F___ | xP __ | all | 1ec
+%        2 | 29   | =._ N FFFxFF | =._N ___I | FFFXFF F_I___ | xP __ | all | 1ec
+%      819 | 31   | =_. N FFFFFF | ___I =_.N | F_F___ FXFFFF | __ xP | all | 1ec
+%      306 | 31   | =_. N FxFFFF | ___I =_.N | J_F___ FXFFFF | __ xP | all | 1ec
+%       32 | 31   | =_. N FxFFFF | ___I =_.N | j_F___ FXFFFF | __ xP | all | 1ec
+%        3 | 31   | =_. N FFFxFF | ___I =_.N | F_F___ FXFxFF | __ xP | all | 1ec
+%     5439 | 33   | -._ N FFFFFF | _._X ___I | FFFXFF F_F___ | xP __ | all | 1ec
+%       56 | 33   | -._ N FFFFFF | _._X ___I | FFIXFF F_F___ | xP __ | graph | 1ec
+%       41 | 33   | -._ N FxFFFF | _._X ___I | JxFXFF F_F___ | xP __ | graph | 1ec
+%        2 | 33   | -._ N FFFFFF | _._X ___I | FFiXFF F_F___ | xP __ | graph | 1ec
+%        1 | 33   | -._ N FFFxFF | _._X ___I | FFFXFF F_i___ | xP __ | all | 1ec
+%      471 | 34   | -._ N FFFFiF | _._X ___I | FFIFiJ F_F___ | xP __ | graph | 1ec
+%      204 | 34   | -._ N FFFFFj | _._X ___I | FFFFFJ J_F___ | xP __ | all | 1ec
+%      125 | 34   | -._ N FFFFiF | _._X ___I | FFiFiJ F_F___ | xP __ | graph | 1ec
+%     3297 | 35   | -_. N FFFFFF | ___I __.X | F_F___ FXFFFF | __ xP | all | 1ec
+%     2469 | 35   | -_. N FFFFFF | ___I __.X | F_F___ JXFFFF | __ xP | graph | 1ec
+%      337 | 35   | -_. N FFFFFF | ___I __.X | F_I___ FXFFFF | __ xP | graph | 1ec
+%       26 | 35   | -_. N FFFFFF | ___I __.X | F_I___ JXFFFF | __ xP | graph | 1ec
+%       23 | 35   | -_. N FxFFFF | ___I __.X | J_F___ FXFFFF | __ xP | all | 1ec
+%       18 | 35   | -_. N FFFxFF | ___I __.X | F_F___ FXIxFF | __ xP | graph | 1ec
+%        6 | 35   | -_. N FFFFFF | ___I __.X | F_i___ FXFFFF | __ xP | graph | 1ec
+%        2 | 35   | -_. N FFFFFF | ___I __.X | F_i___ JXFFFF | __ xP | graph | 1ec
+%        2 | 35   | -_. N FxFFFF | ___I __.X | j_F___ FXFFFF | __ xP | all | 1ec
+%        2 | 35   | -_. N FxFxFF | ___I __.X | J_F___ FXIxFF | __ xP | graph | 1ec
+%        1 | 35   | -_. N FFFxFF | ___I __.X | F_F___ FXixFF | __ xP | graph | 1ec
+%        1 | 35   | -_. N FxFxFF | ___I __.X | J_F___ FXixFF | __ xP | graph | 1ec
+%        1 | 35   | -_. N FxFxFF | ___I __.X | j_F___ FXixFF | __ xP | graph | 1ec
+%      233 | 36   | -_. N FFFFiF | ___I __.X | F_I___ FFFFIF | __ xP | all | 1ec
+%       90 | 36   | -_. N FFFFFj | ___I __.X | F_F___ JFFFIj | __ xP | graph | 1ec
+%       15 | 36   | -_. N FFFFiF | ___I __.X | F_i___ FFFFIF | __ xP | all | 1ec
+%        3 | 36   | -_. N FFiFiF | ___I __.X | F_I___ FFIFIF | __ xP | all | 1ec
+%        1 | 36   | -_. N FFiFiF | ___I __.X | F_i___ FFiFIF | __ xP | all | 1ec
+%     1082 | 45   | -_. R FFFFFF | -_.N __.X | FFFFFF JXFFFF | j1 xP | graph | 1ec
+%      168 | 45   | -_. R FFFFFF | =_.N __.X | FFFFFF JXFFFF | j1 xP | graph | 1ec
+%       70 | 46   | -_. R FFFFFj | -_.N __.X | FFFFFF JFFFIj | j1 xP | graph | 1ec
+%       27 | 46   | -_. R FFFFFj | =_.N __.X | FFFFFF JFFFIj | j1 xP | graph | 1ec
+%       12 | 46   | -._ R FFFFFj | -_.N _._X | FFFxFF FFFFIF | j1 xP | all | 1ec
+%        8 | 46   | -._ R FFFFFj | -_.N _._X | FFFFFF JFFFIj | j1 xP | graph | 1ec
+%        4 | 46   | -_. R FFFFFj | -_.N __.X | FFFxFF FFFFIF | j1 xP | all | 1ec
+%        1 | 46   | -._ R FFFFFj | =_.N _._X | FFFFFF JFFFIj | j1 xP | graph | 1ec
+%        1 | 46   | -_. R FFiFiF | -_.N __.X | FFiFiF FFFFIF | j1 xP | all | 1ec
+%
+% Stats:
+%    
+%    0.632911 46.6867 1 421008 421008
+%    1.26582 82.5561 2 323461 744469
+%    1.89873 89.9668 3 66827 811296
+%    2.53165 93.5963 4 32730 844026
+%    3.16456 95.9248 5 20998 865024
+%    3.79747 96.528 6 5439 870463
+%    4.43038 96.8936 7 3297 873760
+%    5.06329 97.194 8 2709 876469
+%    5.6962 97.4833 9 2609 879078
+%    6.32911 97.7571 10 2469 881547
+%    6.96203 97.9886 11 2088 883635
+%    7.59494 98.206 12 1960 885595
+%    8.22785 98.4107 13 1846 887441
+%    8.86076 98.5307 14 1082 888523
+%    9.49367 98.6309 15 904 889427
+%    10.1266 98.7263 16 860 890287
+%    10.7595 98.8208 17 852 891139
+%    11.3924 98.9116 18 819 891958
+%    12.0253 99.001 19 806 892764
+%    12.6582 99.0727 20 647 893411
+%    13.2911 99.1378 21 587 893998
+%    13.9241 99.19 22 471 894469
+%    14.557 99.2316 23 375 894844
+%    15.1899 99.2731 24 374 895218
+%    15.8228 99.3134 25 363 895581
+%    16.4557 99.3507 26 337 895918
+%    17.0886 99.3847 27 306 896224
+%    17.7215 99.4156 28 279 896503
+%    18.3544 99.4437 29 253 896756
+%    18.9873 99.4715 30 251 897007
+%    19.6203 99.4985 31 244 897251
+%    20.2532 99.5247 32 236 897487
+%    20.8861 99.5506 33 233 897720
+%    21.519 99.5762 34 231 897951
+%    22.1519 99.5997 35 212 898163
+%    22.7848 99.6223 36 204 898367
+%    23.4177 99.6449 37 204 898571
+%    24.0506 99.6671 38 200 898771
+%    24.6835 99.6878 39 187 898958
+%    25.3165 99.7065 40 168 899126
+%    25.9494 99.7244 41 162 899288
+%    26.5823 99.7401 42 141 899429
+%    27.2152 99.7542 43 127 899556
+%    27.8481 99.768 44 125 899681
+%    28.481 99.7812 45 119 899800
+%    29.1139 99.7941 46 116 899916
+%    29.7468 99.8064 47 111 900027
+%    30.3797 99.8164 48 90 900117
+%    31.0127 99.8258 49 85 900202
+%    31.6456 99.8351 50 84 900286
+%    32.2785 99.844 51 80 900366
+%    32.9114 99.8518 52 71 900437
+%    33.5443 99.8596 53 70 900507
+%    34.1772 99.8673 54 69 900576
+%    34.8101 99.8748 55 68 900644
+%    35.443 99.8822 56 67 900711
+%    36.0759 99.889 57 61 900772
+%    36.7089 99.8952 58 56 900828
+%    37.3418 99.9006 59 49 900877
+%    37.9747 99.9056 60 45 900922
+%    38.6076 99.9103 61 42 900964
+%    39.2405 99.9148 62 41 901005
+%    39.8734 99.9194 63 41 901046
+%    40.5063 99.9229 64 32 901078
+%    41.1392 99.9265 65 32 901110
+%    41.7722 99.9299 66 31 901141
+%    42.4051 99.933 67 28 901169
+%    43.038 99.9361 68 28 901197
+%    43.6709 99.9391 69 27 901224
+%    44.3038 99.942 70 26 901250
+%    44.9367 99.9449 71 26 901276
+%    45.5696 99.9478 72 26 901302
+%    46.2025 99.9505 73 25 901327
+%    46.8354 99.9531 74 23 901350
+%    47.4684 99.9556 75 23 901373
+%    48.1013 99.958 76 21 901394
+%    48.7342 99.9603 77 21 901415
+%    49.3671 99.9624 78 19 901434
+%    50 99.9645 79 19 901453
+%    50.6329 99.9665 80 18 901471
+%    51.2658 99.9685 81 18 901489
+%    51.8987 99.9703 82 16 901505
+%    52.5316 99.9719 83 15 901520
+%    53.1646 99.9735 84 14 901534
+%    53.7975 99.9748 85 12 901546
+%    54.4304 99.9762 86 12 901558
+%    55.0633 99.9774 87 11 901569
+%    55.6962 99.9785 88 10 901579
+%    56.3291 99.9796 89 10 901589
+%    56.962 99.9807 90 10 901599
+%    57.5949 99.9817 91 9 901608
+%    58.2278 99.9826 92 8 901616
+%    58.8608 99.9835 93 8 901624
+%    59.4937 99.9843 94 7 901631
+%    60.1266 99.985 95 7 901638
+%    60.7595 99.9858 96 7 901645
+%    61.3924 99.9865 97 6 901651
+%    62.0253 99.9871 98 6 901657
+%    62.6582 99.9877 99 5 901662
+%    63.2911 99.9882 100 5 901667
+%    63.9241 99.9888 101 5 901672
+%    64.557 99.9892 102 4 901676
+%    65.1899 99.9897 103 4 901680
+%    65.8228 99.9901 104 4 901684
+%    66.4557 99.9906 105 4 901688
+%    67.0886 99.991 106 4 901692
+%    67.7215 99.9914 107 3 901695
+%    68.3544 99.9917 108 3 901698
+%    68.9873 99.992 109 3 901701
+%    69.6203 99.9923 110 3 901704
+%    70.2532 99.9927 111 3 901707
+%    70.8861 99.993 112 3 901710
+%    71.519 99.9932 113 2 901712
+%    72.1519 99.9935 114 2 901714
+%    72.7848 99.9937 115 2 901716
+%    73.4177 99.9939 116 2 901718
+%    74.0506 99.9941 117 2 901720
+%    74.6835 99.9943 118 2 901722
+%    75.3165 99.9946 119 2 901724
+%    75.9494 99.9948 120 2 901726
+%    76.5823 99.995 121 2 901728
+%    77.2152 99.9952 122 2 901730
+%    77.8481 99.9955 123 2 901732
+%    78.481 99.9957 124 2 901734
+%    79.1139 99.9959 125 2 901736
+%    79.7468 99.9961 126 2 901738
+%    80.3797 99.9963 127 2 901740
+%    81.0127 99.9966 128 2 901742
+%    81.6456 99.9968 129 2 901744
+%    82.2785 99.9969 130 1 901745
+%    82.9114 99.997 131 1 901746
+%    83.5443 99.9971 132 1 901747
+%    84.1772 99.9972 133 1 901748
+%    84.8101 99.9973 134 1 901749
+%    85.443 99.9974 135 1 901750
+%    86.0759 99.9976 136 1 901751
+%    86.7089 99.9977 137 1 901752
+%    87.3418 99.9978 138 1 901753
+%    87.9747 99.9979 139 1 901754
+%    88.6076 99.998 140 1 901755
+%    89.2405 99.9981 141 1 901756
+%    89.8734 99.9982 142 1 901757
+%    90.5063 99.9983 143 1 901758
+%    91.1392 99.9984 144 1 901759
+%    91.7722 99.9986 145 1 901760
+%    92.4051 99.9987 146 1 901761
+%    93.038 99.9988 147 1 901762
+%    93.6709 99.9989 148 1 901763
+%    94.3038 99.999 149 1 901764
+%    94.9367 99.9991 150 1 901765
+%    95.5696 99.9992 151 1 901766
+%    96.2025 99.9993 152 1 901767
+%    96.8354 99.9994 153 1 901768
+%    97.4684 99.9996 154 1 901769
+%    98.1013 99.9997 155 1 901770
+%    98.7342 99.9998 156 1 901771
+%    99.3671 99.9999 157 1 901772
+%    100 100 158 1 901773
+
+\documentclass[11pt]{article}
+\usepackage[margin=1cm]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{array}
+\usepackage{arydshln}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{ulem}
+
+\newcommand{\mathscale}{1.0}
+
+\title{}
+
+\author{}
+
+\date{}
+
+\begin{document}
+
+\begin{figure*}
+\begin{multicols}{3}
+\scalebox{\mathscale}{\parbox{\linewidth}{
+\begin{flalign*}
+& \begin{array}{l}
+  L[ijx \; J\overline{X} \; \overline{IX} \; \overline{IJ}] \leftarrow \max \\
+  \;\;\; A[j \; i] \quad L[ijx \; \overline{JX} \; \overline{IX} \; \overline{IJ}] \\
+\end{array} \\
+& \begin{array}{l}
+  L[ijx \; \overline{JX} \; I\overline{X} \; \overline{IJ}] \leftarrow \max \\
+  \;\;\; A[i \; j] \quad L[ijx \; \overline{JX} \; \overline{IX} \; \overline{IJ}] \\
+\end{array} \\
+& \begin{array}{l}
+  R[ijx \; J\overline{X} \; \overline{IX} \; \overline{IJ}] \leftarrow \max \\
+  \;\;\; A[j \; i] \quad R[ijx \; \overline{JX} \; \overline{IX} \; \overline{IJ}] \\
+\end{array} \\
+& \begin{array}{l}
+  R[ijx \; \overline{JX} \; I\overline{X} \; \overline{IJ}] \leftarrow \max \\
+  \;\;\; A[i \; j] \quad R[ijx \; \overline{JX} \; \overline{IX} \; \overline{IJ}] \\
+\end{array}
+\end{flalign*}
+}}
+
+\scalebox{\mathscale}{\parbox{\linewidth}{
+\begin{flalign*}
+& \begin{array}{l}
+  \uwave{N}[ijx \; .X \; .\overline{X} \; \overline{IJ}] \leftarrow \max \\
+  \;\;\; A[x \; i] \quad N[ijx \; .\overline{X} \; .\overline{X} \; \overline{IJ}] \\
+\end{array} \\
+& \begin{array}{l}
+  \uwave{N}[ijx \; .\overline{X} \; .X \; \overline{IJ}] \leftarrow \max \\
+  \;\;\; A[x \; j] \quad N[ijx \; .\overline{X} \; .\overline{X} \; \overline{IJ}] \\
+\end{array} \\
+& \begin{array}{l}
+  N[ijx \; J\overline{X} \; \overline{IX} \; \overline{IJ}] \leftarrow \max \\
+  \;\;\; A[j \; i] \quad N[ijx \; \overline{JX} \; \overline{IX} \; \overline{IJ}] \\
+\end{array} \\
+& \begin{array}{l}
+  N[ijx \; \overline{JX} \; I\overline{X} \; \overline{IJ}] \leftarrow \max \\
+  \;\;\; A[i \; j] \quad N[ijx \; \overline{JX} \; \overline{IX} \; \overline{IJ}] \\
+\end{array} \\
+\end{flalign*}
+}}
+
+\scalebox{\mathscale}{\parbox{\linewidth}{
+\begin{flalign*}
+& \begin{array}{l}
+  I[ij \; F \; I] \leftarrow \max \\
+  \;\;\; A[i \; j] \quad I[ij \; F \; \overline{I}] \\
+\end{array} \\
+& \begin{array}{l}
+  I[ij \; J \; F] \leftarrow \max \\
+  \;\;\; A[j \; i] \quad I[ij \; \overline{J} \; F] \\
+\end{array} \\
+\\
+\\
+\\
+& \begin{array}{l}
+  X[ijx \; .X \; .\overline{X} \; F] \leftarrow \max \\
+  \;\;\; A[x \; i] \quad I[ij \; . \; .] \\
+\end{array} \\
+& \begin{array}{l}
+  X[ijx \; .\overline{X} \; .\overline{X} \; I\overline{J}] \leftarrow \max \\
+  \;\;\; A[i \; x] \quad I[ij \; . \; .] \\
+\end{array} \\
+& \begin{array}{l}
+  X[ijx \; .\overline{X} \; .X \; F] \leftarrow \max \\
+  \;\;\; A[x \; j] \quad I[ij \; . \; .] \\
+\end{array} \\
+& \begin{array}{l}
+  X[ijx \; .\overline{X} \; .\overline{X} \; \overline{I}J] \leftarrow \max \\
+  \;\;\; A[j \; x] \quad I[ij \; . \; .] \\
+\end{array}
+\end{flalign*}
+}}
+\end{multicols}
+
+\vspace{-10mm}
+\begin{multicols}{2}
+\scalebox{\mathscale}{\parbox{\linewidth}{
+\begin{flalign*}
+& \begin{array}{l}
+  I[ij \; F \; \overline{I}] \leftarrow \max \\
+\end{array} \\
+& \left\{
+  \begin{array}{l}
+    \begin{array}{l}
+      I[i \; i{+}1 \; F \; F] \quad I[i{+}1 \; j \; \overline{F} \; F] \\
+    \end{array} \\
+    \max_{k \in (i, j)} \\
+    \left\{
+      \begin{array}{l}
+        I[ik \; F \; I] \quad I[kj \; . \; .] \\
+        BLRN\cdotp [ikj \; F \; I\overline{J} \; \overline{IK}] \quad I[kj \; . \; .] \\
+        \max_{l \in (k, j)} \\
+        \left\{
+          \begin{array}{l}
+            RN\cdotp [ikl \; F \; I\overline{L} \; \overline{IK}] \quad I[kl \; . \; .] \quad \cdotp LNX[ljk \; .\overline{K} \; . \; \overline{L}.] \\
+            BLRN\cdotp [ikl \; F \; I\overline{L} \; \overline{IK}] \quad I[kl \; . \; .] \quad I[lj \; . \; .] \\
+          \end{array}
+        \right. \\
+        \max_{l \in (i, k)} \\
+        \left\{
+          \begin{array}{l}
+            RNX\cdotp [ilk \; F \; .\overline{K} \; I\overline{L}] \quad I[lk \; . \; .] \quad \cdotp \uwave{LN}[kjl \; .\overline{L} \; . \; \overline{K}.] \\
+          \end{array}
+        \right. \\
+      \end{array}
+    \right. \\
+  \end{array}
+\right. \\
+& \begin{array}{l}
+  I[ij \; j \; F] \leftarrow \max_{k \in (i, j)} \\
+\end{array} \\
+& \left\{
+  \begin{array}{l}
+    I[ik \; \overline{F} \; .] \quad I[kj \; J \; F] \\
+    I[ik \; \overline{F} \; .] \quad \cdotp BLRN[kji \; J\overline{I} \; F \; \overline{KJ}] \\
+    \max_{l \in (i, k)} \\
+    \left\{
+      \begin{array}{l}
+        RNX\cdotp [ilk \; \overline{F} \; .\overline{K} \; .\overline{L}] \quad I[lk \; . \; .] \quad \cdotp LN[kjl \; J\overline{L} \; F \; \overline{KJ}] \\
+        I[il \; \overline{F} \; .] \quad I[lk \; . \; .] \quad \cdotp BLRN[kjl \; J\overline{L} \; F \; \overline{KJ}] \\
+      \end{array}
+    \right. \\
+    \max_{l \in (k, j)} \\
+    \left\{
+      \begin{array}{l}
+        \uwave{RN}\cdotp [ikl \; \overline{F} \; .\overline{L} \; .\overline{K}] \quad I[kl \; . \; .] \quad \cdotp LNX[ljk \; .\overline{K} \; F \; \overline{L}J] \\
+      \end{array}
+    \right. \\
+  \end{array}
+\right. \\
+\end{flalign*}
+}}
+
+\scalebox{\mathscale}{\parbox{\linewidth}{
+\begin{flalign*}
+\hspace{15mm}
+& \begin{array}{l}
+  \dotuline{L}[ijx \; \overline{JX} \; \overline{IX} \; \overline{IJ}] \leftarrow \max_{k \in (i, j)} \\
+\end{array} \\
+& \left\{
+  \begin{array}{l}
+    X[ikx \; .\overline{X} \; .X \; F] \quad \cdotp N[kji \; .\overline{I} \; .\overline{I} \; \overline{KJ}] \\
+    X[ikx \; .\overline{X} \; .\overline{X} \; \overline{I}K] \quad \cdotp N[kji \; .\overline{I} \; .\overline{I} \; \overline{KJ}] \\
+  \end{array}
+\right. \\
+& \begin{array}{l}
+  \dotuline{R}[ijx \; \overline{JX} \; \overline{IX} \; \overline{IJ}] \leftarrow \max_{k \in (i, j)} \\
+\end{array} \\
+& \left\{
+  \begin{array}{l}
+    N\cdotp [ikj \; .\overline{J} \; .\overline{J} \; \overline{IK}] \quad X[kjx \; .X \; .\overline{X} \; F] \\
+    N\cdotp [ikj \; .\overline{J} \; .\overline{J} \; \overline{IK}] \quad X[kjx \; .\overline{X} \; .\overline{X} \; K\overline{J}] \\
+  \end{array}
+\right. \\
+& \begin{array}{l}
+  \uwave{N}[ijx \; \overline{JX} \; \overline{IX} \; \overline{IJ}] \leftarrow \max_{k \in (i, j)} \\
+\end{array} \\
+& \left\{
+  \begin{array}{l}
+    \cdotp N[ikx \; \overline{KX} \; \overline{I}X \; \overline{IK}] \quad I[kj \; . \; .] \\
+    \cdotp N[ikx \; \overline{KX} \; \overline{IX} \; \overline{I}K] \quad I[kj \; . \; .] \\
+    I[ik \; . \; .] \quad N\cdotp [kjx \; \overline{J}X \; \overline{KX} \; \overline{KJ}] \\
+    I[ik \; . \; .] \quad N\cdotp [kjx \; \overline{JX} \; \overline{KX} \; K\overline{J}] \\
+  \end{array}
+\right. \\
+& \begin{array}{l}
+  \dotuline{N}[ijx \; \overline{JX} \; \overline{IX} \; \overline{IJ}] \leftarrow \max_{k \in (i, j)} \\
+\end{array} \\
+& \left\{
+  \begin{array}{l}
+    \cdotp X[ikx \; .\overline{X} \; .X \; \overline{IK}] \quad I[kj \; . \; .] \\
+    \cdotp X[ikx \; .\overline{X} \; .\overline{X} \; \overline{I}K] \quad I[kj \; . \; .] \\
+    I[ik \; . \; .] \quad X\cdotp [kjx \; .X \; .\overline{X} \; \overline{KJ}] \\
+    I[ik \; . \; .] \quad X\cdotp [kjx \; .\overline{X} \; .\overline{X} \; K\overline{J}] \\
+  \end{array}
+\right. \\
+\end{flalign*}
+}}
+\end{multicols}
+\end{figure*}
+
+\end{document}
+

@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package graphparser;
+
+option java_package = "edu.berkeley.nlp.graphparser";
+option java_outer_classname = "ExternalSpines";
+
+message Score {
+  uint32 id = 1;
+  double score = 2;
+}
+
+message ScoreSet {
+  repeated Score scores = 1;
+  double min_score = 2;
+}
+
+message Sentence {
+  uint32 id = 1;
+  repeated ScoreSet scores = 2;
+}
+
+message Spine {
+	string text = 1;
+	uint32 id = 2;
+}
+
+message Scores {
+  repeated Sentence sentences = 1;
+	repeated Spine spines = 2;
+}
