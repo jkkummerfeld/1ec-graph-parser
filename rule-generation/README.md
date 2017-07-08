@@ -20,7 +20,7 @@ The code has a few options:
 For example, this will generate the rules used for our experiments (should match the file in the resources folder of the parser):
 
 ```
-python3 convert_templates_to_rules.py codegen arcs combinations < templates_used.tex > example
+python3 convert_templates_to_rules.py --codegen --arcs --combinations < templates_used.tex > example
 ```
 
 There is also a separate file for code that generates feasible parents (which is imported and used by the converter).
