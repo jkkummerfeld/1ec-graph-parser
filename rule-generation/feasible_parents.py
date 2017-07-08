@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+from __future__ import print_function
+
+import argparse
+
 edge_options = ['<_', '_>', '<-', '->', '__']
 
 valid_ijx_states = []
@@ -95,7 +99,8 @@ for ij in edge_options:
             valid_ijx_states.append((ij, ix, jx, i, j, x, desc, graph_only))
 
 if __name__ == '__main__':
-    print("There are only 90 possible valid parent sets (assuming no cycles). This script enumerates them.")
+    parser = argparse.ArgumentParser(description='There are only 90 possible valid parent sets (assuming no cycles). This script enumerates them.')
+    args = parser.parse_args()
     for option in valid_ij_states:
         print(option)
 
