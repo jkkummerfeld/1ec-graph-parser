@@ -30,9 +30,13 @@ When run on its own it gives a list of valid parent combinations:
 python3 feasible_parents.py
 ```
 
-### Differences in templates
-
-The templates given here differ slightly from the figure in the paper:
+## Template files
+We have included two files of templates, both compilable with LaTeX (no other files required).
+These differ slightly from the figure in the paper:
 
 - These are simplified to not have the 'hat' notation (this is simply not tracked), and to restrict the rules for B further, requiring a direct edge between the ends of the span in the left item. These changes do not have a practical impact since we prune away all items of type B anyway.
 - The notation is slightly different for parents. Instead of 'd', 'n', and 'p', we use the letter of the position (I, J, K, L, X) with lowercase indicating indirect. This is the same as in Kummerfeld (2016).
+
+The 'templates_used-pruned' file also has comments that provide statistics on how frequently rules occur in the training set of the PTB, when converted to our representation.
+For rules that appear, we give the count, which template it corresponds to, and the rule as it appears in the output of the generation process.
+There is also a section ('Stats') that shows what percentage of rules cover what percentage of rule occurrences (e.g. the most common rule accounts for 46.7% of all rule applications).

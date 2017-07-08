@@ -1,167 +1,167 @@
-% File: rules.tex
+% File: templates_used-pruned.tex
 %
 % Contact: Jonathan Kummerfeld (jkk@berkeley.edu)
 
-%   count  | rule | result       | input                             | algorithms
+%   count  | template | result       | input                             | algorithms
 %   
-%   323461 |  0   | ___ I F_F___ | ___I ___I | F_F___ J_F___ | i+ __ | all | all
-%    32730 |  0   | ___ I F_F___ | ___I ___I | F_F___ j_F___ | i+ __ | all | all
-%   421008 |  1   | ___ I F_F___ | ___I ___I | F_I___ F_F___ | __ __ | all | all
-%     1960 |  1   | ___ I F_i___ | ___I ___I | F_I___ F_I___ | __ __ | all | all
-%      363 |  1   | ___ I F_F___ | ___I ___I | F_I___ J_F___ | __ __ | graph | all
-%      253 |  1   | ___ I F_i___ | ___I ___I | F_I___ F_i___ | __ __ | all | all
-%        3 |  1   | ___ I F_F___ | ___I ___I | F_I___ j_F___ | __ __ | graph | all
-%      587 |  2   | ___ I F_F___ | -_.N ___I | FFIFFF J_F___ | j1 __ | graph | 1ec
-%      251 |  2   | ___ I F_i___ | -_.L ___I | FFIFiF F_F___ | j1 __ | all | 1ec
-%      244 |  2   | ___ I F_i___ | -_.N ___I | FFIFiF F_F___ | j1 __ | all | 1ec
-%       69 |  2   | ___ I F_F___ | -_.N ___I | FFIFFF F_F___ | j1 __ | all | 1ec
-%       32 |  2   | ___ I F_F___ | =_.N ___I | FFIFFF J_F___ | j1 __ | graph | 1ec
-%       16 |  2   | ___ I F_i___ | -_.L ___I | FFIFiF F_i___ | j1 __ | graph | 1ec
-%       14 |  2   | ___ I F_F___ | -_.L ___I | FFIFFF F_F___ | j1 __ | all | 1ec
-%        8 |  2   | ___ I F_i___ | -_.L ___I | FFIFiF F_I___ | j1 __ | graph | 1ec
-%        4 |  2   | ___ I F_i___ | -_.N ___I | FFIFFF F_I___ | j1 __ | all | 1ec
-%        2 |  2   | ___ I F_i___ | -_.N ___I | FFIFFF F_i___ | j1 __ | all | 1ec
-%        1 |  2   | ___ I F_F___ | =_.N ___I | FFIxFF J_F___ | j1 __ | graph | 1ec
-%        1 |  2   | ___ I F_i___ | -_.L ___I | FFIFiF J_F___ | j1 __ | graph | 1ec
-%        1 |  2   | ___ I F_i___ | -_.R ___I | FFIFiF F_F___ | j1 __ | all | 1ec
-%      127 |  3   | ___ I F_F___ | -_.N ___I -._N | FFIFFF F_I___ FFFFFF | j1 __ j0 | all | 1ec
-%      116 |  3   | ___ I F_F___ | -_.N ___I =._N | FFIFFF F_I___ FFFFFF | j1 __ j0 | all | 1ec
-%       68 |  3   | ___ I F_F___ | -_.R ___I -._N | FFIFFF F_I___ FFFFFF | j1 __ j0 | all | 1ec
-%       61 |  3   | ___ I F_F___ | -_.R ___I =._N | FFIFFF F_I___ FFFFFF | j1 __ j0 | all | 1ec
-%       26 |  3   | ___ I F_F___ | -_.N ___I -._N | FFIFFF F_i___ FFFFFF | j1 __ j0 | all | 1ec
-%       26 |  3   | ___ I F_F___ | -_.N ___I =._N | FFIFFF F_i___ FFFFFF | j1 __ j0 | all | 1ec
-%       19 |  3   | ___ I F_F___ | -_.R ___I -._N | FFIFFF F_i___ FFFFFF | j1 __ j0 | all | 1ec
-%       19 |  3   | ___ I F_F___ | -_.R ___I =._N | FFIFFF F_i___ FFFFFF | j1 __ j0 | all | 1ec
-%        7 |  3   | ___ I F_F___ | -_.N ___I -._N | FFIFFF F_F___ FxFFFF | j1 __ j0 | all | 1ec
-%        7 |  3   | ___ I F_F___ | -_.R ___I =._N | FFIFij F_I___ FFFFFF | j1 __ j0 | graph | 1ec
-%        5 |  3   | ___ I F_F___ | -_.R ___I -._N | FFIFij F_I___ FFFFFF | j1 __ j0 | graph | 1ec
-%        4 |  3   | ___ I F_F___ | -_.N ___I -._N | FFIFij F_F___ FxFFFF | j1 __ j0 | graph | 1ec
-%        4 |  3   | ___ I F_F___ | -_.N ___I -._N | FFIFij F_I___ FFFFFF | j1 __ j0 | graph | 1ec
-%        2 |  3   | ___ I F_F___ | -_.R ___I -._N | FFIFij F_F___ FxFFFF | j1 __ j0 | graph | 1ec
-%        1 |  3   | ___ I F_F___ | -_.N ___I =._N | FFIFij F_I___ FFFFFF | j1 __ j0 | graph | 1ec
-%        1 |  3   | ___ I F_F___ | -_.R ___I =._N | FFIFij F_F___ FxFFFF | j1 __ j0 | graph | 1ec
-%     2088 |  4   | ___ I F_F___ | -_.N ___I ___I | FFIFFF F_I___ F_F___ | j1 __ __ | all | 1ec
-%      852 |  4   | ___ I F_F___ | -_.R ___I ___I | FFIFFF F_I___ F_F___ | j1 __ __ | all | 1ec
-%      375 |  4   | ___ I F_F___ | -_.N ___I ___I | FFIFFF F_i___ F_F___ | j1 __ __ | all | 1ec
-%      231 |  4   | ___ I F_F___ | -_.R ___I ___I | FFIFFF F_i___ F_F___ | j1 __ __ | all | 1ec
-%       85 |  4   | ___ I F_F___ | -_.R ___I ___I | FFIFij F_I___ F_F___ | j1 __ __ | graph | 1ec
-%       80 |  4   | ___ I F_F___ | -_.N ___I ___I | FFIFij F_I___ F_F___ | j1 __ __ | graph | 1ec
-%       18 |  4   | ___ I F_F___ | -_.L ___I ___I | FFIFFF F_I___ F_F___ | j1 __ __ | all | 1ec
-%       10 |  4   | ___ I F_F___ | -_.L ___I ___I | FFIFiF F_I___ F_F___ | j1 __ __ | graph | 1ec
-%        5 |  4   | ___ I F_F___ | -_.L ___I ___I | FFIFiF F_F___ J_F___ | j1 __ __ | graph | 1ec
-%        5 |  4   | ___ I F_F___ | -_.N ___I ___I | FFIFiF F_I___ F_F___ | j1 __ __ | graph | 1ec
-%        2 |  4   | ___ I F_F___ | -_.L ___I ___I | FFIFiF F_i___ F_F___ | j1 __ __ | graph | 1ec
-%        2 |  4   | ___ I F_F___ | -_.N ___I ___I | FFIFiF F_i___ F_F___ | j1 __ __ | graph | 1ec
-%        1 |  4   | ___ I F_F___ | -_.L ___I ___I | FFIFFF F_i___ F_F___ | j1 __ __ | all | 1ec
-%        1 |  4   | ___ I F_F___ | -_.N ___I ___I | FFIFij F_i___ F_F___ | j1 __ __ | graph | 1ec
-%        1 |  4   | ___ I F_F___ | -_.R ___I ___I | FFIFij F_i___ F_F___ | j1 __ __ | graph | 1ec
-%        1 |  6   | ___ I F_i___ | __.X ___I =._N | FFIFIF F_I___ FFFxFF | j1 __ j0 | graph | 1ec
-%    66827 |  7   | ___ I j_F___ | ___I ___I | J_F___ J_F___ | __ __ | all | all
-%    20998 |  7   | ___ I j_F___ | ___I ___I | j_F___ J_F___ | __ __ | all | all
-%      806 |  8   | ___ I j_F___ | ___I -._L | J_F___ JFFFij | __ i0 | graph | 1ec
-%      204 |  8   | ___ I j_F___ | ___I -._N | F_F___ JFFFFj | __ i0 | all | 1ec
-%      200 |  8   | ___ I j_F___ | ___I -._N | J_F___ JFFFij | __ i0 | graph | 1ec
-%      111 |  8   | ___ I j_F___ | ___I -._L | J_F___ JFFFFF | __ i0 | all | 1ec
-%       23 |  8   | ___ I j_F___ | ___I -._N | J_F___ JFFFFF | __ i0 | all | 1ec
-%       21 |  8   | ___ I j_F___ | ___I -._R | F_F___ JFFFFj | __ i0 | all | 1ec
-%        1 |  8   | ___ I j_F___ | ___I -._L | F_F___ JFFFij | __ i0 | graph | 1ec
-%        1 |  8   | ___ I j_F___ | ___I -._N | F_F___ JFFFij | __ i0 | graph | 1ec
-%      860 |  9   | ___ I j_F___ | =_.N ___I -._L | FXFFFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
-%      374 |  9   | ___ I j_F___ | __.X ___I -._L | FXFFFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
-%      279 |  9   | ___ I j_F___ | =_.N ___I -._L | FxFFFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
-%      187 |  9   | ___ I j_F___ | __.X ___I -._N | FXFFFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
-%       71 |  9   | ___ I j_F___ | =_.N ___I -._L | FXFFFF J_F___ JFFFFF | j1 __ j0 | all | 1ec
-%       49 |  9   | ___ I j_F___ | =_.N ___I -._N | FXFFFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
-%       41 |  9   | ___ I j_F___ | __.X ___I -._L | FXFFFF J_F___ JFFFFF | j1 __ j0 | all | 1ec
-%       28 |  9   | ___ I j_F___ | =_.N ___I -._L | FxFFFF J_F___ JFFFFF | j1 __ j0 | all | 1ec
-%       28 |  9   | ___ I j_F___ | =_.N ___I -._N | FxFFFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
-%       21 |  9   | ___ I j_F___ | -_.N ___I -._L | FxFFFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
-%       11 |  9   | ___ I j_F___ | __.X ___I -._N | FXFFFF J_F___ JFFFFF | j1 __ j0 | all | 1ec
-%        4 |  9   | ___ I j_F___ | =_.N ___I -._N | FXFFFF J_F___ JFFFFF | j1 __ j0 | all | 1ec
-%        3 |  9   | ___ I j_F___ | -_.N ___I -._L | FxFxFF F_F___ JFFFFF | j1 __ j0 | all | 1ec
-%        3 |  9   | ___ I j_F___ | =_.N ___I -._N | FxFFFF J_F___ JFFFFF | j1 __ j0 | all | 1ec
-%        3 |  9   | ___ I j_F___ | __.X ___I -._L | FXIxFF F_F___ JFFFFF | j1 __ j0 | graph | 1ec
-%        2 |  9   | ___ I j_F___ | -_.N ___I -._L | FxFFFF J_F___ JFFFFF | j1 __ j0 | all | 1ec
-%        2 |  9   | ___ I j_F___ | -_.N ___I -._N | FxFFFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
-%        2 |  9   | ___ I j_F___ | __.X ___I -._L | FXIxFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
-%        2 |  9   | ___ I j_F___ | __.X ___I -._L | FXixFF F_F___ JFFFFF | j1 __ j0 | graph | 1ec
-%        1 |  9   | ___ I j_F___ | -_.N ___I -._L | FxFxFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
-%        1 |  9   | ___ I j_F___ | =_.N ___I -._L | FXFxFF F_F___ JFFFFF | j1 __ j0 | all | 1ec
-%        1 |  9   | ___ I j_F___ | =_.N ___I -._L | FXFxFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
-%        1 |  9   | ___ I j_F___ | __.X ___I -._L | FXixFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
-%        1 |  9   | ___ I j_F___ | __.X ___I -._N | FXIxFF F_F___ JFFFFF | j1 __ j0 | graph | 1ec
-%        1 |  9   | ___ I j_F___ | __.X ___I -._N | FXixFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
-%     1846 | 10   | ___ I j_F___ | ___I ___I -._L | J_F___ J_F___ JFFFij | __ __ j0 | graph | 1ec
-%      141 | 10   | ___ I j_F___ | ___I ___I -._L | j_F___ J_F___ JFFFij | __ __ j0 | graph | 1ec
-%      119 | 10   | ___ I j_F___ | ___I ___I -._N | J_F___ J_F___ JFFFij | __ __ j0 | graph | 1ec
-%       67 | 10   | ___ I j_F___ | ___I ___I -._L | J_F___ J_F___ JFFFFF | __ __ j0 | all | 1ec
-%        9 | 10   | ___ I j_F___ | ___I ___I -._N | j_F___ J_F___ JFFFij | __ __ j0 | graph | 1ec
-%        7 | 10   | ___ I j_F___ | ___I ___I -._N | J_F___ J_F___ JFFFFF | __ __ j0 | all | 1ec
-%        6 | 10   | ___ I j_F___ | ___I ___I -._L | j_F___ J_F___ JFFFFF | __ __ j0 | all | 1ec
-%        1 | 10   | ___ I j_F___ | ___I ___I -._L | J_F___ j_F___ JFFFFF | __ __ j0 | all | 1ec
-%        1 | 10   | ___ I j_F___ | ___I ___I -._N | j_F___ J_F___ JFFFFF | __ __ j0 | all | 1ec
-%      236 | 21   | -._ L FFFFFF | _._X -._N | FFIXFF FFFFFF | xP i0 | graph | 1ec
-%       84 | 21   | -._ L FFFFFF | _._X =._N | FFIXFF FFFFFF | xP i0 | graph | 1ec
-%       31 | 21   | -_. L FFFFFF | __.X -._N | FFIXFF FFFFFF | xP i0 | graph | 1ec
-%       10 | 21   | -._ L FFFFFF | _._X =._N | FFFXFF FxFFFF | xP i0 | graph | 1ec
-%        2 | 21   | -._ L FFFFFF | _._X -._N | FFFXFF FxFFFF | xP i0 | graph | 1ec
-%        2 | 21   | -._ L FFFFFF | _._X -._N | FFiXFF FFFFFF | xP i0 | graph | 1ec
-%        2 | 21   | -._ L FFFFFF | _._X =._N | FFIXFF FxFFFF | xP i0 | graph | 1ec
-%        2 | 21   | -_. L FFFFFF | __.X =._N | FFIXFF FFFFFF | xP i0 | graph | 1ec
-%     2609 | 22   | -._ L FFFFiF | _._X -._N | FFIFiJ FFFFFF | xP i0 | graph | 1ec
-%      904 | 22   | -._ L FFFFiF | _._X =._N | FFIFiJ FFFFFF | xP i0 | graph | 1ec
-%      647 | 22   | -._ L FFFFiF | _._X -._N | FFiFiJ FFFFFF | xP i0 | graph | 1ec
-%      212 | 22   | -_. L FFFFiF | __.X -._N | FFIFiJ FFFFFF | xP i0 | graph | 1ec
-%      162 | 22   | -._ L FFFFiF | _._X =._N | FFiFiJ FFFFFF | xP i0 | graph | 1ec
-%       42 | 22   | -_. L FFFFiF | __.X =._N | FFIFiJ FFFFFF | xP i0 | graph | 1ec
-%       25 | 22   | -_. L FFFFiF | __.X -._N | FFiFiJ FFFFFF | xP i0 | graph | 1ec
-%       12 | 22   | -_. L FFFFiF | __.X =._N | FFiFiJ FFFFFF | xP i0 | graph | 1ec
-%       10 | 22   | -._ L FFFFiF | _._X =._N | FFFFFJ FxFFFF | xP i0 | all | 1ec
-%        1 | 22   | -._ L FFFFiF | _._X -._N | FFFFFJ FxFFFF | xP i0 | all | 1ec
-%        1 | 22   | -_. L FFFFiF | __.X -._N | FFFFFJ FxFFFF | xP i0 | all | 1ec
-%        1 | 22   | -_. L FFFFiF | __.X =._N | FFIFiJ FxFFFF | xP i0 | graph | 1ec
-%     2709 | 29   | =._ N FFFFFF | =._N ___I | FFFXFF F_F___ | xP __ | all | 1ec
-%       45 | 29   | =._ N FxFFFF | =._N ___I | FxFXFF F_F___ | xP __ | all | 1ec
-%        2 | 29   | =._ N FFFxFF | =._N ___I | FFFXFF F_I___ | xP __ | all | 1ec
-%      819 | 31   | =_. N FFFFFF | ___I =_.N | F_F___ FXFFFF | __ xP | all | 1ec
-%      306 | 31   | =_. N FxFFFF | ___I =_.N | J_F___ FXFFFF | __ xP | all | 1ec
-%       32 | 31   | =_. N FxFFFF | ___I =_.N | j_F___ FXFFFF | __ xP | all | 1ec
-%        3 | 31   | =_. N FFFxFF | ___I =_.N | F_F___ FXFxFF | __ xP | all | 1ec
-%     5439 | 33   | -._ N FFFFFF | _._X ___I | FFFXFF F_F___ | xP __ | all | 1ec
-%       56 | 33   | -._ N FFFFFF | _._X ___I | FFIXFF F_F___ | xP __ | graph | 1ec
-%       41 | 33   | -._ N FxFFFF | _._X ___I | JxFXFF F_F___ | xP __ | graph | 1ec
-%        2 | 33   | -._ N FFFFFF | _._X ___I | FFiXFF F_F___ | xP __ | graph | 1ec
-%        1 | 33   | -._ N FFFxFF | _._X ___I | FFFXFF F_i___ | xP __ | all | 1ec
-%      471 | 34   | -._ N FFFFiF | _._X ___I | FFIFiJ F_F___ | xP __ | graph | 1ec
-%      204 | 34   | -._ N FFFFFj | _._X ___I | FFFFFJ J_F___ | xP __ | all | 1ec
-%      125 | 34   | -._ N FFFFiF | _._X ___I | FFiFiJ F_F___ | xP __ | graph | 1ec
-%     3297 | 35   | -_. N FFFFFF | ___I __.X | F_F___ FXFFFF | __ xP | all | 1ec
-%     2469 | 35   | -_. N FFFFFF | ___I __.X | F_F___ JXFFFF | __ xP | graph | 1ec
-%      337 | 35   | -_. N FFFFFF | ___I __.X | F_I___ FXFFFF | __ xP | graph | 1ec
-%       26 | 35   | -_. N FFFFFF | ___I __.X | F_I___ JXFFFF | __ xP | graph | 1ec
-%       23 | 35   | -_. N FxFFFF | ___I __.X | J_F___ FXFFFF | __ xP | all | 1ec
-%       18 | 35   | -_. N FFFxFF | ___I __.X | F_F___ FXIxFF | __ xP | graph | 1ec
-%        6 | 35   | -_. N FFFFFF | ___I __.X | F_i___ FXFFFF | __ xP | graph | 1ec
-%        2 | 35   | -_. N FFFFFF | ___I __.X | F_i___ JXFFFF | __ xP | graph | 1ec
-%        2 | 35   | -_. N FxFFFF | ___I __.X | j_F___ FXFFFF | __ xP | all | 1ec
-%        2 | 35   | -_. N FxFxFF | ___I __.X | J_F___ FXIxFF | __ xP | graph | 1ec
-%        1 | 35   | -_. N FFFxFF | ___I __.X | F_F___ FXixFF | __ xP | graph | 1ec
-%        1 | 35   | -_. N FxFxFF | ___I __.X | J_F___ FXixFF | __ xP | graph | 1ec
-%        1 | 35   | -_. N FxFxFF | ___I __.X | j_F___ FXixFF | __ xP | graph | 1ec
-%      233 | 36   | -_. N FFFFiF | ___I __.X | F_I___ FFFFIF | __ xP | all | 1ec
-%       90 | 36   | -_. N FFFFFj | ___I __.X | F_F___ JFFFIj | __ xP | graph | 1ec
-%       15 | 36   | -_. N FFFFiF | ___I __.X | F_i___ FFFFIF | __ xP | all | 1ec
-%        3 | 36   | -_. N FFiFiF | ___I __.X | F_I___ FFIFIF | __ xP | all | 1ec
-%        1 | 36   | -_. N FFiFiF | ___I __.X | F_i___ FFiFIF | __ xP | all | 1ec
-%     1082 | 45   | -_. R FFFFFF | -_.N __.X | FFFFFF JXFFFF | j1 xP | graph | 1ec
-%      168 | 45   | -_. R FFFFFF | =_.N __.X | FFFFFF JXFFFF | j1 xP | graph | 1ec
-%       70 | 46   | -_. R FFFFFj | -_.N __.X | FFFFFF JFFFIj | j1 xP | graph | 1ec
-%       27 | 46   | -_. R FFFFFj | =_.N __.X | FFFFFF JFFFIj | j1 xP | graph | 1ec
-%       12 | 46   | -._ R FFFFFj | -_.N _._X | FFFxFF FFFFIF | j1 xP | all | 1ec
-%        8 | 46   | -._ R FFFFFj | -_.N _._X | FFFFFF JFFFIj | j1 xP | graph | 1ec
-%        4 | 46   | -_. R FFFFFj | -_.N __.X | FFFxFF FFFFIF | j1 xP | all | 1ec
-%        1 | 46   | -._ R FFFFFj | =_.N _._X | FFFFFF JFFFIj | j1 xP | graph | 1ec
-%        1 | 46   | -_. R FFiFiF | -_.N __.X | FFiFiF FFFFIF | j1 xP | all | 1ec
+%   323461 |  0       | ___ I F_F___ | ___I ___I | F_F___ J_F___ | i+ __ | all | all
+%    32730 |  0       | ___ I F_F___ | ___I ___I | F_F___ j_F___ | i+ __ | all | all
+%   421008 |  1       | ___ I F_F___ | ___I ___I | F_I___ F_F___ | __ __ | all | all
+%     1960 |  1       | ___ I F_i___ | ___I ___I | F_I___ F_I___ | __ __ | all | all
+%      363 |  1       | ___ I F_F___ | ___I ___I | F_I___ J_F___ | __ __ | graph | all
+%      253 |  1       | ___ I F_i___ | ___I ___I | F_I___ F_i___ | __ __ | all | all
+%        3 |  1       | ___ I F_F___ | ___I ___I | F_I___ j_F___ | __ __ | graph | all
+%      587 |  2       | ___ I F_F___ | -_.N ___I | FFIFFF J_F___ | j1 __ | graph | 1ec
+%      251 |  2       | ___ I F_i___ | -_.L ___I | FFIFiF F_F___ | j1 __ | all | 1ec
+%      244 |  2       | ___ I F_i___ | -_.N ___I | FFIFiF F_F___ | j1 __ | all | 1ec
+%       69 |  2       | ___ I F_F___ | -_.N ___I | FFIFFF F_F___ | j1 __ | all | 1ec
+%       32 |  2       | ___ I F_F___ | =_.N ___I | FFIFFF J_F___ | j1 __ | graph | 1ec
+%       16 |  2       | ___ I F_i___ | -_.L ___I | FFIFiF F_i___ | j1 __ | graph | 1ec
+%       14 |  2       | ___ I F_F___ | -_.L ___I | FFIFFF F_F___ | j1 __ | all | 1ec
+%        8 |  2       | ___ I F_i___ | -_.L ___I | FFIFiF F_I___ | j1 __ | graph | 1ec
+%        4 |  2       | ___ I F_i___ | -_.N ___I | FFIFFF F_I___ | j1 __ | all | 1ec
+%        2 |  2       | ___ I F_i___ | -_.N ___I | FFIFFF F_i___ | j1 __ | all | 1ec
+%        1 |  2       | ___ I F_F___ | =_.N ___I | FFIxFF J_F___ | j1 __ | graph | 1ec
+%        1 |  2       | ___ I F_i___ | -_.L ___I | FFIFiF J_F___ | j1 __ | graph | 1ec
+%        1 |  2       | ___ I F_i___ | -_.R ___I | FFIFiF F_F___ | j1 __ | all | 1ec
+%      127 |  3       | ___ I F_F___ | -_.N ___I -._N | FFIFFF F_I___ FFFFFF | j1 __ j0 | all | 1ec
+%      116 |  3       | ___ I F_F___ | -_.N ___I =._N | FFIFFF F_I___ FFFFFF | j1 __ j0 | all | 1ec
+%       68 |  3       | ___ I F_F___ | -_.R ___I -._N | FFIFFF F_I___ FFFFFF | j1 __ j0 | all | 1ec
+%       61 |  3       | ___ I F_F___ | -_.R ___I =._N | FFIFFF F_I___ FFFFFF | j1 __ j0 | all | 1ec
+%       26 |  3       | ___ I F_F___ | -_.N ___I -._N | FFIFFF F_i___ FFFFFF | j1 __ j0 | all | 1ec
+%       26 |  3       | ___ I F_F___ | -_.N ___I =._N | FFIFFF F_i___ FFFFFF | j1 __ j0 | all | 1ec
+%       19 |  3       | ___ I F_F___ | -_.R ___I -._N | FFIFFF F_i___ FFFFFF | j1 __ j0 | all | 1ec
+%       19 |  3       | ___ I F_F___ | -_.R ___I =._N | FFIFFF F_i___ FFFFFF | j1 __ j0 | all | 1ec
+%        7 |  3       | ___ I F_F___ | -_.N ___I -._N | FFIFFF F_F___ FxFFFF | j1 __ j0 | all | 1ec
+%        7 |  3       | ___ I F_F___ | -_.R ___I =._N | FFIFij F_I___ FFFFFF | j1 __ j0 | graph | 1ec
+%        5 |  3       | ___ I F_F___ | -_.R ___I -._N | FFIFij F_I___ FFFFFF | j1 __ j0 | graph | 1ec
+%        4 |  3       | ___ I F_F___ | -_.N ___I -._N | FFIFij F_F___ FxFFFF | j1 __ j0 | graph | 1ec
+%        4 |  3       | ___ I F_F___ | -_.N ___I -._N | FFIFij F_I___ FFFFFF | j1 __ j0 | graph | 1ec
+%        2 |  3       | ___ I F_F___ | -_.R ___I -._N | FFIFij F_F___ FxFFFF | j1 __ j0 | graph | 1ec
+%        1 |  3       | ___ I F_F___ | -_.N ___I =._N | FFIFij F_I___ FFFFFF | j1 __ j0 | graph | 1ec
+%        1 |  3       | ___ I F_F___ | -_.R ___I =._N | FFIFij F_F___ FxFFFF | j1 __ j0 | graph | 1ec
+%     2088 |  4       | ___ I F_F___ | -_.N ___I ___I | FFIFFF F_I___ F_F___ | j1 __ __ | all | 1ec
+%      852 |  4       | ___ I F_F___ | -_.R ___I ___I | FFIFFF F_I___ F_F___ | j1 __ __ | all | 1ec
+%      375 |  4       | ___ I F_F___ | -_.N ___I ___I | FFIFFF F_i___ F_F___ | j1 __ __ | all | 1ec
+%      231 |  4       | ___ I F_F___ | -_.R ___I ___I | FFIFFF F_i___ F_F___ | j1 __ __ | all | 1ec
+%       85 |  4       | ___ I F_F___ | -_.R ___I ___I | FFIFij F_I___ F_F___ | j1 __ __ | graph | 1ec
+%       80 |  4       | ___ I F_F___ | -_.N ___I ___I | FFIFij F_I___ F_F___ | j1 __ __ | graph | 1ec
+%       18 |  4       | ___ I F_F___ | -_.L ___I ___I | FFIFFF F_I___ F_F___ | j1 __ __ | all | 1ec
+%       10 |  4       | ___ I F_F___ | -_.L ___I ___I | FFIFiF F_I___ F_F___ | j1 __ __ | graph | 1ec
+%        5 |  4       | ___ I F_F___ | -_.L ___I ___I | FFIFiF F_F___ J_F___ | j1 __ __ | graph | 1ec
+%        5 |  4       | ___ I F_F___ | -_.N ___I ___I | FFIFiF F_I___ F_F___ | j1 __ __ | graph | 1ec
+%        2 |  4       | ___ I F_F___ | -_.L ___I ___I | FFIFiF F_i___ F_F___ | j1 __ __ | graph | 1ec
+%        2 |  4       | ___ I F_F___ | -_.N ___I ___I | FFIFiF F_i___ F_F___ | j1 __ __ | graph | 1ec
+%        1 |  4       | ___ I F_F___ | -_.L ___I ___I | FFIFFF F_i___ F_F___ | j1 __ __ | all | 1ec
+%        1 |  4       | ___ I F_F___ | -_.N ___I ___I | FFIFij F_i___ F_F___ | j1 __ __ | graph | 1ec
+%        1 |  4       | ___ I F_F___ | -_.R ___I ___I | FFIFij F_i___ F_F___ | j1 __ __ | graph | 1ec
+%        1 |  6       | ___ I F_i___ | __.X ___I =._N | FFIFIF F_I___ FFFxFF | j1 __ j0 | graph | 1ec
+%    66827 |  7       | ___ I j_F___ | ___I ___I | J_F___ J_F___ | __ __ | all | all
+%    20998 |  7       | ___ I j_F___ | ___I ___I | j_F___ J_F___ | __ __ | all | all
+%      806 |  8       | ___ I j_F___ | ___I -._L | J_F___ JFFFij | __ i0 | graph | 1ec
+%      204 |  8       | ___ I j_F___ | ___I -._N | F_F___ JFFFFj | __ i0 | all | 1ec
+%      200 |  8       | ___ I j_F___ | ___I -._N | J_F___ JFFFij | __ i0 | graph | 1ec
+%      111 |  8       | ___ I j_F___ | ___I -._L | J_F___ JFFFFF | __ i0 | all | 1ec
+%       23 |  8       | ___ I j_F___ | ___I -._N | J_F___ JFFFFF | __ i0 | all | 1ec
+%       21 |  8       | ___ I j_F___ | ___I -._R | F_F___ JFFFFj | __ i0 | all | 1ec
+%        1 |  8       | ___ I j_F___ | ___I -._L | F_F___ JFFFij | __ i0 | graph | 1ec
+%        1 |  8       | ___ I j_F___ | ___I -._N | F_F___ JFFFij | __ i0 | graph | 1ec
+%      860 |  9       | ___ I j_F___ | =_.N ___I -._L | FXFFFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
+%      374 |  9       | ___ I j_F___ | __.X ___I -._L | FXFFFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
+%      279 |  9       | ___ I j_F___ | =_.N ___I -._L | FxFFFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
+%      187 |  9       | ___ I j_F___ | __.X ___I -._N | FXFFFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
+%       71 |  9       | ___ I j_F___ | =_.N ___I -._L | FXFFFF J_F___ JFFFFF | j1 __ j0 | all | 1ec
+%       49 |  9       | ___ I j_F___ | =_.N ___I -._N | FXFFFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
+%       41 |  9       | ___ I j_F___ | __.X ___I -._L | FXFFFF J_F___ JFFFFF | j1 __ j0 | all | 1ec
+%       28 |  9       | ___ I j_F___ | =_.N ___I -._L | FxFFFF J_F___ JFFFFF | j1 __ j0 | all | 1ec
+%       28 |  9       | ___ I j_F___ | =_.N ___I -._N | FxFFFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
+%       21 |  9       | ___ I j_F___ | -_.N ___I -._L | FxFFFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
+%       11 |  9       | ___ I j_F___ | __.X ___I -._N | FXFFFF J_F___ JFFFFF | j1 __ j0 | all | 1ec
+%        4 |  9       | ___ I j_F___ | =_.N ___I -._N | FXFFFF J_F___ JFFFFF | j1 __ j0 | all | 1ec
+%        3 |  9       | ___ I j_F___ | -_.N ___I -._L | FxFxFF F_F___ JFFFFF | j1 __ j0 | all | 1ec
+%        3 |  9       | ___ I j_F___ | =_.N ___I -._N | FxFFFF J_F___ JFFFFF | j1 __ j0 | all | 1ec
+%        3 |  9       | ___ I j_F___ | __.X ___I -._L | FXIxFF F_F___ JFFFFF | j1 __ j0 | graph | 1ec
+%        2 |  9       | ___ I j_F___ | -_.N ___I -._L | FxFFFF J_F___ JFFFFF | j1 __ j0 | all | 1ec
+%        2 |  9       | ___ I j_F___ | -_.N ___I -._N | FxFFFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
+%        2 |  9       | ___ I j_F___ | __.X ___I -._L | FXIxFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
+%        2 |  9       | ___ I j_F___ | __.X ___I -._L | FXixFF F_F___ JFFFFF | j1 __ j0 | graph | 1ec
+%        1 |  9       | ___ I j_F___ | -_.N ___I -._L | FxFxFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
+%        1 |  9       | ___ I j_F___ | =_.N ___I -._L | FXFxFF F_F___ JFFFFF | j1 __ j0 | all | 1ec
+%        1 |  9       | ___ I j_F___ | =_.N ___I -._L | FXFxFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
+%        1 |  9       | ___ I j_F___ | __.X ___I -._L | FXixFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
+%        1 |  9       | ___ I j_F___ | __.X ___I -._N | FXIxFF F_F___ JFFFFF | j1 __ j0 | graph | 1ec
+%        1 |  9       | ___ I j_F___ | __.X ___I -._N | FXixFF J_F___ JFFFij | j1 __ j0 | graph | 1ec
+%     1846 | 10       | ___ I j_F___ | ___I ___I -._L | J_F___ J_F___ JFFFij | __ __ j0 | graph | 1ec
+%      141 | 10       | ___ I j_F___ | ___I ___I -._L | j_F___ J_F___ JFFFij | __ __ j0 | graph | 1ec
+%      119 | 10       | ___ I j_F___ | ___I ___I -._N | J_F___ J_F___ JFFFij | __ __ j0 | graph | 1ec
+%       67 | 10       | ___ I j_F___ | ___I ___I -._L | J_F___ J_F___ JFFFFF | __ __ j0 | all | 1ec
+%        9 | 10       | ___ I j_F___ | ___I ___I -._N | j_F___ J_F___ JFFFij | __ __ j0 | graph | 1ec
+%        7 | 10       | ___ I j_F___ | ___I ___I -._N | J_F___ J_F___ JFFFFF | __ __ j0 | all | 1ec
+%        6 | 10       | ___ I j_F___ | ___I ___I -._L | j_F___ J_F___ JFFFFF | __ __ j0 | all | 1ec
+%        1 | 10       | ___ I j_F___ | ___I ___I -._L | J_F___ j_F___ JFFFFF | __ __ j0 | all | 1ec
+%        1 | 10       | ___ I j_F___ | ___I ___I -._N | j_F___ J_F___ JFFFFF | __ __ j0 | all | 1ec
+%      236 | 21       | -._ L FFFFFF | _._X -._N | FFIXFF FFFFFF | xP i0 | graph | 1ec
+%       84 | 21       | -._ L FFFFFF | _._X =._N | FFIXFF FFFFFF | xP i0 | graph | 1ec
+%       31 | 21       | -_. L FFFFFF | __.X -._N | FFIXFF FFFFFF | xP i0 | graph | 1ec
+%       10 | 21       | -._ L FFFFFF | _._X =._N | FFFXFF FxFFFF | xP i0 | graph | 1ec
+%        2 | 21       | -._ L FFFFFF | _._X -._N | FFFXFF FxFFFF | xP i0 | graph | 1ec
+%        2 | 21       | -._ L FFFFFF | _._X -._N | FFiXFF FFFFFF | xP i0 | graph | 1ec
+%        2 | 21       | -._ L FFFFFF | _._X =._N | FFIXFF FxFFFF | xP i0 | graph | 1ec
+%        2 | 21       | -_. L FFFFFF | __.X =._N | FFIXFF FFFFFF | xP i0 | graph | 1ec
+%     2609 | 22       | -._ L FFFFiF | _._X -._N | FFIFiJ FFFFFF | xP i0 | graph | 1ec
+%      904 | 22       | -._ L FFFFiF | _._X =._N | FFIFiJ FFFFFF | xP i0 | graph | 1ec
+%      647 | 22       | -._ L FFFFiF | _._X -._N | FFiFiJ FFFFFF | xP i0 | graph | 1ec
+%      212 | 22       | -_. L FFFFiF | __.X -._N | FFIFiJ FFFFFF | xP i0 | graph | 1ec
+%      162 | 22       | -._ L FFFFiF | _._X =._N | FFiFiJ FFFFFF | xP i0 | graph | 1ec
+%       42 | 22       | -_. L FFFFiF | __.X =._N | FFIFiJ FFFFFF | xP i0 | graph | 1ec
+%       25 | 22       | -_. L FFFFiF | __.X -._N | FFiFiJ FFFFFF | xP i0 | graph | 1ec
+%       12 | 22       | -_. L FFFFiF | __.X =._N | FFiFiJ FFFFFF | xP i0 | graph | 1ec
+%       10 | 22       | -._ L FFFFiF | _._X =._N | FFFFFJ FxFFFF | xP i0 | all | 1ec
+%        1 | 22       | -._ L FFFFiF | _._X -._N | FFFFFJ FxFFFF | xP i0 | all | 1ec
+%        1 | 22       | -_. L FFFFiF | __.X -._N | FFFFFJ FxFFFF | xP i0 | all | 1ec
+%        1 | 22       | -_. L FFFFiF | __.X =._N | FFIFiJ FxFFFF | xP i0 | graph | 1ec
+%     2709 | 29       | =._ N FFFFFF | =._N ___I | FFFXFF F_F___ | xP __ | all | 1ec
+%       45 | 29       | =._ N FxFFFF | =._N ___I | FxFXFF F_F___ | xP __ | all | 1ec
+%        2 | 29       | =._ N FFFxFF | =._N ___I | FFFXFF F_I___ | xP __ | all | 1ec
+%      819 | 31       | =_. N FFFFFF | ___I =_.N | F_F___ FXFFFF | __ xP | all | 1ec
+%      306 | 31       | =_. N FxFFFF | ___I =_.N | J_F___ FXFFFF | __ xP | all | 1ec
+%       32 | 31       | =_. N FxFFFF | ___I =_.N | j_F___ FXFFFF | __ xP | all | 1ec
+%        3 | 31       | =_. N FFFxFF | ___I =_.N | F_F___ FXFxFF | __ xP | all | 1ec
+%     5439 | 33       | -._ N FFFFFF | _._X ___I | FFFXFF F_F___ | xP __ | all | 1ec
+%       56 | 33       | -._ N FFFFFF | _._X ___I | FFIXFF F_F___ | xP __ | graph | 1ec
+%       41 | 33       | -._ N FxFFFF | _._X ___I | JxFXFF F_F___ | xP __ | graph | 1ec
+%        2 | 33       | -._ N FFFFFF | _._X ___I | FFiXFF F_F___ | xP __ | graph | 1ec
+%        1 | 33       | -._ N FFFxFF | _._X ___I | FFFXFF F_i___ | xP __ | all | 1ec
+%      471 | 34       | -._ N FFFFiF | _._X ___I | FFIFiJ F_F___ | xP __ | graph | 1ec
+%      204 | 34       | -._ N FFFFFj | _._X ___I | FFFFFJ J_F___ | xP __ | all | 1ec
+%      125 | 34       | -._ N FFFFiF | _._X ___I | FFiFiJ F_F___ | xP __ | graph | 1ec
+%     3297 | 35       | -_. N FFFFFF | ___I __.X | F_F___ FXFFFF | __ xP | all | 1ec
+%     2469 | 35       | -_. N FFFFFF | ___I __.X | F_F___ JXFFFF | __ xP | graph | 1ec
+%      337 | 35       | -_. N FFFFFF | ___I __.X | F_I___ FXFFFF | __ xP | graph | 1ec
+%       26 | 35       | -_. N FFFFFF | ___I __.X | F_I___ JXFFFF | __ xP | graph | 1ec
+%       23 | 35       | -_. N FxFFFF | ___I __.X | J_F___ FXFFFF | __ xP | all | 1ec
+%       18 | 35       | -_. N FFFxFF | ___I __.X | F_F___ FXIxFF | __ xP | graph | 1ec
+%        6 | 35       | -_. N FFFFFF | ___I __.X | F_i___ FXFFFF | __ xP | graph | 1ec
+%        2 | 35       | -_. N FFFFFF | ___I __.X | F_i___ JXFFFF | __ xP | graph | 1ec
+%        2 | 35       | -_. N FxFFFF | ___I __.X | j_F___ FXFFFF | __ xP | all | 1ec
+%        2 | 35       | -_. N FxFxFF | ___I __.X | J_F___ FXIxFF | __ xP | graph | 1ec
+%        1 | 35       | -_. N FFFxFF | ___I __.X | F_F___ FXixFF | __ xP | graph | 1ec
+%        1 | 35       | -_. N FxFxFF | ___I __.X | J_F___ FXixFF | __ xP | graph | 1ec
+%        1 | 35       | -_. N FxFxFF | ___I __.X | j_F___ FXixFF | __ xP | graph | 1ec
+%      233 | 36       | -_. N FFFFiF | ___I __.X | F_I___ FFFFIF | __ xP | all | 1ec
+%       90 | 36       | -_. N FFFFFj | ___I __.X | F_F___ JFFFIj | __ xP | graph | 1ec
+%       15 | 36       | -_. N FFFFiF | ___I __.X | F_i___ FFFFIF | __ xP | all | 1ec
+%        3 | 36       | -_. N FFiFiF | ___I __.X | F_I___ FFIFIF | __ xP | all | 1ec
+%        1 | 36       | -_. N FFiFiF | ___I __.X | F_i___ FFiFIF | __ xP | all | 1ec
+%     1082 | 45       | -_. R FFFFFF | -_.N __.X | FFFFFF JXFFFF | j1 xP | graph | 1ec
+%      168 | 45       | -_. R FFFFFF | =_.N __.X | FFFFFF JXFFFF | j1 xP | graph | 1ec
+%       70 | 46       | -_. R FFFFFj | -_.N __.X | FFFFFF JFFFIj | j1 xP | graph | 1ec
+%       27 | 46       | -_. R FFFFFj | =_.N __.X | FFFFFF JFFFIj | j1 xP | graph | 1ec
+%       12 | 46       | -._ R FFFFFj | -_.N _._X | FFFxFF FFFFIF | j1 xP | all | 1ec
+%        8 | 46       | -._ R FFFFFj | -_.N _._X | FFFFFF JFFFIj | j1 xP | graph | 1ec
+%        4 | 46       | -_. R FFFFFj | -_.N __.X | FFFxFF FFFFIF | j1 xP | all | 1ec
+%        1 | 46       | -._ R FFFFFj | =_.N _._X | FFFFFF JFFFIj | j1 xP | graph | 1ec
+%        1 | 46       | -_. R FFiFiF | -_.N __.X | FFiFiF FFFFIF | j1 xP | all | 1ec
 %
 % Stats:
 %    
