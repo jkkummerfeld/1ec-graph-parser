@@ -31,7 +31,7 @@ There are also a range of options:
 - `--remove_trivial_unaries` Remove unaries that go from a label to itself, e.g.  (NP (NP (NNP it)))
 - `--equivalent_labels <labea_pairls>` Pairs of labels to treat as equivalent, separated by commas (default: `ADVP:PRT`)
 - `--equivalent_words <word_pairs>` Pairs of words to treat as equivalent, separated by commas (default: ` `)
-- `--labels_to_remove <labels>` Remove nodes with the given labels. Keep subtrees, but remove parents that now have a span of size 0 (default: `#&''&,&.&:&\`\``)
+- `--labels_to_remove <labels>` Remove nodes with the given labels. Keep subtrees, but remove parents that now have a span of size 0 (default: ```#&''&,&.&``&:```)
 
 The most import of these is `--null_only`, which will ignore the coindexation of traces when calculating scores.
 
