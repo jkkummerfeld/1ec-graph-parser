@@ -12,10 +12,10 @@ See the paper for proofs that these can be enforced during rule generation.
 
 The code has a few options:
 
-- --check, this sanity checks the remplates (e.g. that the position of the external point in the goal is consistent with the input items)
-- --codegen, this generates the rules, if the following options are present
-- --arcs, generates rules for adding arcs (if 'codegen' is true)
-- --combinations, generates rules for combining items (if 'codegen' is true)
+- `--check` Sanity check the remplates (e.g. that the position of the external point in the goal is consistent with the input items)
+- `--codegen` Generate the rules, if the following options are present
+- `--arcs` Generate rules for adding arcs (if 'codegen' is true)
+- `--combinations` Generate rules for combining items (if 'codegen' is true)
 
 For example, this will generate the rules used for our experiments (should match the file in the resources folder of the parser):
 
