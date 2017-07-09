@@ -28,7 +28,7 @@ For edits, the seven types of coordination we define (j[0-6]) are:
 5. `(((A , B) , C) and D)`
 6. `((A ,) (B ,) (C and) D)`
 
-For head rules, the six variants we define (j[0-5]) change the head in conjunctions:
+For head rules, the six variants we define (j[0-5]) change the head in coordination:
 
 0. First non-punctuation
 1. First conjunction
