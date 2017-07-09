@@ -1,8 +1,8 @@
 # Evaluation
 
-These scripts provide evaluation metrics for (1) traces in the standard PTB representation, (2) all structure in our representation.
+These scripts provide evaluation metrics for (1) nulls and traces in the standard PTB representation, (2) all structure in our representation.
 
-## Trace Evaluation - ptb-trace-eval.py
+## Null and trace Evaluation - ptb-trace-eval.py
 
 Basic usage is:
 
@@ -12,6 +12,29 @@ python ptb-trace-eval.py data.gold data.system
 
 Where `data.gold` is the gold standard parses and `data.system` is the output of a parser.
 
+First, the script will print information about how all the options are set for the run.
+Then, for each parse it will print the gold and system parses, the information about nulls in each, reprint mistakes (extra or missing), and the scores.
+If either parse contains a null then the parses are printed over multiple lines for easier reading (if there are none, they are printed on a single line).
+Finally, at the end, performance on each type of null and trace type is printed, as well as an overall score.
 
+### Arguments
+
+There must be two filenames provided, the gold and system data (as shown above).
+There are also a range of options:
+
+- `--help` Show help and exit
+- `--gold_format` Input format for the gold file: ptb (single or multiple lines per parse), ontonotes (one file) (default: ptb)
+- `--test_format` Input format for the test file: ptb (single or multiple lines per parse), ontonotes (one file) (default: ptb)
+- `--null_only` Whether to only score the null itself (not coindexation)
+- `--keep_function_labels` Keep the -TMP part in NP-TMP (for example)
+- `--homogenise_top_label` Adjust the parse to have ROOT above any S, FRAG, etc, replacing TOP, S1, or other alternative top symbols
+- `--remove_trivial_unaries` Remove unaries that go from a label to itself, e.g.  (NP (NP (NNP it)))
+- `--equivalent_labels <labea_pairls>` Pairs of labels to treat as equivalent, separated by commas (default: ADVP:PRT)
+- `--equivalent_words <word_pairs>` Pairs of words to treat as equivalent, separated by commas (default: )
+- `--labels_to_remove <labels>` Remove nodes with the given labels. Keep subtrees, but remove parents that now have a span of size 0 (default: #&''&,&.&:&\`\`)
+
+The most import of these is `--null_only`, which will ignore the coindexation of traces when calculating scores.
 
 ## Split Head Representation Evaluation - shp-eval.py
+
+

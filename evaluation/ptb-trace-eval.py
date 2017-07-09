@@ -84,7 +84,8 @@ def mapping_to_items(mapping, args):
 
     items = []
 
-    #TODO: Don't rely on provided position, get the left end of the next non-null
+    #TODO: Consider alternative: don't rely on provided position, get the left
+    # end of the next non-null
 
     # Add items without coindexation
     for node in mapping[3]:
@@ -113,12 +114,6 @@ def mapping_to_items(mapping, args):
     for num in mapping[2]:
         for node in mapping[2][num]:
             ref = mapping[0][num]
-###            while ref[1]:
-###                child = ref[0].subtrees[0]
-###                ref_num = get_reference(child.word)
-###                if ref_num is None:
-###                    break
-###                ref = mapping[0][ref_num]
             ref = ref[0]
 
             if args.null_only:
@@ -255,18 +250,13 @@ if __name__ == '__main__':
         gold_tree.calculate_spans()
         test_tree.calculate_spans()
 
-        print("Gold", gold_tree)
-        print("Test", test_tree)
 
         # Score and report
         gold_traces = get_traces(gold_tree)
         gold_items = mapping_to_items(gold_traces, args)
 
         test_traces = get_traces(test_tree)
-        print(test_traces)
         test_items = mapping_to_items(test_traces, args)
-
-    ###    print("Comparison:", render_tree.text_coloured_errors(test_tree, gold_tree))
 
         match = 0
         to_print = []
@@ -293,15 +283,18 @@ if __name__ == '__main__':
             if item not in gold_items:
                 to_print.append("    Extra test "+ str(item))
                 all_match = False
-    ###    if not all_match:
-    ###    if has_items:
-    ###        print("Gold", render_tree.text_tree(gold_tree, False, True))
-    ###        print("Test", render_tree.text_tree(test_tree, False, True))
-    ###    else:
-    ###        print("Gold", gold_tree)
-    ###        print("Test", test_tree)
-        print("\n".join(to_print))
-        print(match, len(test_items), len(gold_items))
+        
+        if has_items:
+            print("Gold", render_tree.text_tree(gold_tree, False, True))
+            print("Test", render_tree.text_tree(test_tree, False, True))
+            print("Gold traces", gold_traces)
+            print("Test traces", test_traces)
+        else:
+            print("Gold", gold_tree)
+            print("Test", test_tree)
+        if len(to_print) > 0:
+            print("\n".join(to_print))
+        print(match, len(test_items), len(gold_items), "\n")
 
     done = set()
     total_match = 0
