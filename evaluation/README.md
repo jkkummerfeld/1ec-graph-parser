@@ -2,7 +2,7 @@
 
 These scripts provide evaluation metrics for (1) nulls and traces in the standard PTB representation, (2) all structure in our representation.
 
-## Null and trace Evaluation - ptb-trace-eval.py
+## Null and Trace Evaluation - ptb-trace-eval.py
 
 Basic usage is:
 
@@ -37,4 +37,29 @@ The most import of these is `--null_only`, which will ignore the coindexation of
 
 ## Split Head Representation Evaluation - shp-eval.py
 
+Usage is:
 
+```Shell
+python shp-eval.py data.gold.shp data.system.shp
+```
+
+Where `data.gold.shp` is the gold standard parses and `data.system.shp` is the output of a parser, both in our representation.
+
+The program will print results for:
+
+- Labeled spines
+- Labeled edges
+- Labeled traces
+- Unlabeled edges
+- Unlabeled traces
+
+In each case the results show:
+
+0. The number that matched
+1. The total in the gold parse
+2. The total in the system parse
+3. Precision
+4. Recall
+5. F-Score (equally weighted precision and recall)
+
+A line will also be printed with how many parses were processed.
