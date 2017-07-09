@@ -23,15 +23,15 @@ There must be two filenames provided, the gold and system data (as shown above).
 There are also a range of options:
 
 - `--help` Show help and exit
-- `--gold_format` Input format for the gold file: ptb (single or multiple lines per parse), ontonotes (one file) (default: ptb)
-- `--test_format` Input format for the test file: ptb (single or multiple lines per parse), ontonotes (one file) (default: ptb)
+- `--gold_format` Input format for the gold file: ptb (single or multiple lines per parse), ontonotes (one file) (default: `ptb`)
+- `--test_format` Input format for the test file: ptb (single or multiple lines per parse), ontonotes (one file) (default: `ptb`)
 - `--null_only` Whether to only score the null itself (not coindexation)
 - `--keep_function_labels` Keep the -TMP part in NP-TMP (for example)
 - `--homogenise_top_label` Adjust the parse to have ROOT above any S, FRAG, etc, replacing TOP, S1, or other alternative top symbols
 - `--remove_trivial_unaries` Remove unaries that go from a label to itself, e.g.  (NP (NP (NNP it)))
-- `--equivalent_labels <labea_pairls>` Pairs of labels to treat as equivalent, separated by commas (default: ADVP:PRT)
-- `--equivalent_words <word_pairs>` Pairs of words to treat as equivalent, separated by commas (default: )
-- `--labels_to_remove <labels>` Remove nodes with the given labels. Keep subtrees, but remove parents that now have a span of size 0 (default: #&''&,&.&:&\`\`)
+- `--equivalent_labels <labea_pairls>` Pairs of labels to treat as equivalent, separated by commas (default: `ADVP:PRT`)
+- `--equivalent_words <word_pairs>` Pairs of words to treat as equivalent, separated by commas (default: ` `)
+- `--labels_to_remove <labels>` Remove nodes with the given labels. Keep subtrees, but remove parents that now have a span of size 0 (default: `#&''&,&.&:&\`\``)
 
 The most import of these is `--null_only`, which will ignore the coindexation of traces when calculating scores.
 
