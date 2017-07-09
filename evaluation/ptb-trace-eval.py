@@ -170,7 +170,7 @@ if __name__ == '__main__':
         help="Pairs of labels to treat as equivalent, separated by commas")
     parser.add_argument("--equivalent_words", default="",
         help="Pairs of words to treat as equivalent, separated by commas")
-    parser.add_argument("--labels_to_remove", default="#&''&,&.&:&``",
+    parser.add_argument("--labels_to_remove", default="#&''&,&.&``&:",
         help="Remove nodes with the given labels. Keep subtrees, but remove parents that now have a span of size 0")
     args = parser.parse_args()
     for arg in args.__dict__:
