@@ -55,11 +55,11 @@ The program will print results for:
 
 In each case the results show:
 
-0. The number that matched
-1. The total in the gold parse
-2. The total in the system parse
-3. Precision
-4. Recall
-5. F-Score (equally weighted precision and recall)
+1. The number that matched
+2. The total in the gold parse
+3. The total in the system parse
+4. Precision
+5. Recall
+6. F-Score (equally weighted precision and recall)
 
 A line will also be printed with how many parses were processed.
