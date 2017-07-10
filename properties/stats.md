@@ -5,14 +5,13 @@ Note, some of these stats were calculated on an earlier version of the parse rep
 
 Property                                                  | Value 
 --------------------------------------------------------- | -----
-Unique words                                              | 44389
-Pairs of word positions                                   | 33,1247,89
-Unique POS + Spine combinations                           | 4822
-Unique POS + Spine combos without traces or function tags | 1653
+Unique words                                              | 44,389
+Unique POS + Spine combinations                           | 4,822
+Unique POS + Spine combos without traces or function tags | 1,653
 Average Spine options per tag                             | 36.1
-Average Spine options per word                            | 0.46
+Average Spine options per word                            | 2.2
 Total number of arcs, including traces                    | 986,847
-Total number of structural arcs                           | 950,028
+Total number of structural arcs (ie. number of tokens)    | 950,028
 
 ### Traces per sentence in wsj 2 - 21
 
