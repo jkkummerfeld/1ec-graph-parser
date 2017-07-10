@@ -14,8 +14,8 @@ Cumulative % | Count | Trace type
 
 ### Only traces and gapping as types
 
-Cumulative % | Count | Start Symbol | Null? | End Symbol | Null? | Type
------------- | ----- | ------------ | ----- | ---------- | ----- | ----
+Cumulative % | Count | End Symbol   | Null? | Start Symbol | Null? | Type
+------------ | ----- | ------------ | ----- | ------------ | ----- | ----
 34.9 | 12862 | `NP_0` | `T` | `NP_0` | `F` | `*`
 55.1 | 7438 | `NP_0` | `T` | `WHNP_0` | `F` | `*`
 66.3 | 4120 | `S_0` | `T` | `S_0` | `F` | `*`
@@ -112,8 +112,8 @@ Cumulative % | Count | Start Symbol | Null? | End Symbol | Null? | Type
 
 ### Full details
 
-Cumulative % | Count | Start Symbol | Null? | End Symbol | Null? | Type
------------- | ----- | ------------ | ----- | ---------- | ----- | ----
+Cumulative % | Count | End Symbol   | Null? | Start Symbol | Null? | Type
+------------ | ----- | ------------ | ----- | ------------ | ----- | ----
 34.4 | 12691 | `NP_0` | `T` | `NP_0` | `F` | `*`
 51.4 | 6257 | `NP_0` | `T` | `WHNP_0` | `F` | `*T*`
 61.1 | 3556 | `S_0` | `T` | `S_0` | `F` | `*T*`
