@@ -1,24 +1,21 @@
-Traces per sentence in wsj 2 - 21:
-12801    1
- 6198    2
- 2312    3
-  739    4
-  221    5
-   63    6
-   23    7
-    6    8
-    1   10
-    1   11
-    1   17
+This file contains a range of simple counts related to PTB data.
 
-In a full model:
-  Words - 44392
-  Non-Terminals - 1886
-  Arc triples - 3679
-  Unary sequences - 1807
-  POS pairs - 6920
-  unique POS pair + triple - 1,387,672
-  Average triples per POS pair - 200.531
+### Traces per sentence in wsj 2 - 21:
+
+Traces | Count
+------ | -----
+1      | 12801
+2      | 6198
+3      | 2312
+4      | 739
+5      | 221
+6      | 63
+7      | 23
+8      | 6
+10     | 1
+11     | 1
+17     | 1
+
 
 In the Training set:
   Unique words - 44389
@@ -30,25 +27,7 @@ In the Training set:
   Average Spine options per word, 0.46
   Total number of arcs, including traces - 986847
   Total number of structural arcs - 950028
-  Trace types and counts:
-    train:
-      *T*       15938
-      *         15639
-      *_chain    2742
-      *ICH*       998
-      =           577
-      *EXP*       557
-      *RNR*       345
-      *PPA*        20
-      *T*_chain     3
-    dev:
-      *T*      633
-      *        629
-      *_chain  102
-      *ICH*     55
-      =         22
-      *EXP*     13
-      *RNR*     12
+
   Number of words with the specified number of POS + Spine options:
     26426 1
     7534 2
