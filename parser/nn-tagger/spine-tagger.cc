@@ -1,3 +1,5 @@
+// Based on the Bidirection LSTM tagger from DyNet
+
 #include "dynet/nodes.h"
 #include "dynet/dynet.h"
 #include "dynet/training.h"
