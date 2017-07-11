@@ -1,5 +1,9 @@
 This folder contains the first-order parser and a neural network tagger.
 
+# Simple usage
+
+The simplest way to run this code is to use the jar at (TODO) amd run 
+
 TODO:
 - Usage instructions
 - Description of what is here
@@ -14,19 +18,15 @@ In each cell I have a beam, but that beam is actually composed of entirely
 independent sub-beams, identifiable by a key (a Long). How should the key be
 defined? Three options are:
 
-1 - Based on parents, item type, etc
-2 - Based on the spines
-3 - A hybrid
+1. Based on parents, item type, etc
+2. Based on the spines
+3. A hybrid
 
 There is tension here between:
 
- - Efficiency A, have as much on a single subbeam as possible, so states are
- 	 pruned as soon as possible based on score.
- - Efficiency B, have subbeams defined so that we can easily determine
-   compatible pairs for binary composition (eg. put the spine for one side in,
-   so we can filter those items based on the item they must combine with)
- - Accuracy, maintain diversity in the overall beam by pushing things into more
- 	 subbeams where they can live on until we know which is better.
+- Efficiency A, have as much on a single subbeam as possible, so states are pruned as soon as possible based on score.
+- Efficiency B, have subbeams defined so that we can easily determine compatible pairs for binary composition (eg. put the spine for one side in, so we can filter those items based on the item they must combine with)
+- Accuracy, maintain diversity in the overall beam by pushing things into more subbeams where they can live on until we know which is better.
 
 Before having 1ec parsing I had a mixture of these. In the main beam I had a
 version of (1), just whether it was created by the binary, init, or arc step. I
