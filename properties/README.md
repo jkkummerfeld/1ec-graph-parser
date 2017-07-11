@@ -10,7 +10,7 @@ Reads parses in our representation from standard input and prints sentences when
 Example run:
 
 ```Shell
-$ python3 check_for_locked_chain.py < example.shp
+python3 check_for_locked_chain.py < example.shp
 This is not a real parse .
 ```
 
@@ -22,13 +22,13 @@ This compares the spines used in two files and gives stats about those present i
 It can be run with:
 
 ```Shell
-$ python3 count_unique_dev_spines.py known-parses.shp unknown-parses.shp
+python3 count_unique_dev_spines.py known-parses.shp unknown-parses.shp
 ```
 
 For example, when running with the training and development set it gives:
 
 ```Shell
-$ python3 count_unique_dev_spines.py training.shp dev.shp
+python3 count_unique_dev_spines.py training.shp dev.shp
 Dev sentences with all seen: (word, POS, spine) 503 29.6%
 Dev sentences with all seen: (POS, spine) 1658 97.5%
 Dev sentences with all seen: spine 1684 99.1%
@@ -47,6 +47,6 @@ Reads parses in from standard input and prints out whether they are projective a
 Run as follows:
 
 ```Shell
-$ python3 graph_classifier.py < parses.shp
+python3 graph_classifier.py < parses.shp
 ```
 

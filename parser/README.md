@@ -2,7 +2,21 @@ This folder contains the first-order parser and a neural network tagger.
 
 # Simple usage
 
-The simplest way to run this code is to use the jar at (TODO) amd run 
+The simplest way to run this code is to use the jar at (TODO) amd run:
+
+```Shell
+./example-run.sh example-run example-data.tok example-data.pos
+```
+
+If you wish to use the neural network spine pruner for faster and more accurate parsing, then:
+see the readme in its folder for directions, then run like this:
+
+```Shell
+(run the pruner to generate example-spines.data as described in nn-tagger/README.md)
+./example-run.sh example-run example-data-with-ids.tok example-data.pos example-spines.data
+```
+
+# Options
 
 TODO:
 - Usage instructions
