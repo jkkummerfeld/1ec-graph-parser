@@ -1,5 +1,3 @@
-// Based on the Bidirection LSTM tagger from DyNet
-
 #include "dynet/nodes.h"
 #include "dynet/dynet.h"
 #include "dynet/training.h"
@@ -28,10 +26,10 @@
 using namespace std;
 using namespace dynet;
 
-unsigned LAYERS = 1;
+unsigned LAYERS = 2;
 unsigned INPUT_DIM = 128;
-unsigned HIDDEN_DIM = 128;
-unsigned TAG_HIDDEN_DIM = 32;
+unsigned HIDDEN_DIM = 256;
+unsigned TAG_HIDDEN_DIM = 64;
 unsigned TAG_SIZE = 0;
 unsigned VOCAB_SIZE = 0;
 
@@ -228,10 +226,12 @@ int main(int argc, char** argv) {
   if (argc < 3) {
     cerr << "Usage: "
       << argv[0] << endl
-      << "  -train corpus.txt" << endl
+      << "  [-train corpus.txt]" << endl
       << "  [-dev dev.txt]" << endl
       << "  [-test test.txt]" << endl
       << "  [-model model.params]" << endl
+      << "  [-word-dict dict.words]" << endl
+      << "  [-tag-dict dict.tags]" << endl
       << "  [-prefix name (default=tagger)]" << endl
       << "  [-cutoff-ratio CUTOFF_RATIO]" << endl
       << "  [-layers LAYERS]" << endl
@@ -242,6 +242,7 @@ int main(int argc, char** argv) {
       << endl;
     return 1;
   }
+  bool doing_train = get_bool_arg(argc, argv, "-train");
   bool doing_test = get_bool_arg(argc, argv, "-test");
   bool min_loss = get_bool_arg(argc, argv, "-min_loss");
   string prefix = get_string_arg(argc, argv, "-prefix", "tagger");
@@ -256,45 +257,71 @@ int main(int argc, char** argv) {
   vector<pair<vector<int>,vector<int>>> training, dev;
   vector<pair<int, pair<vector<int>,vector<int>>>> test;
 
-  kNONE = td.convert("*");
-  kSOS = d.convert("<s>");
-  kEOS = d.convert("</s>");
-  string line;
-  int tlc = 0;
-  int ttoks = 0;
-  string train_in = get_string_arg(argc, argv, "-train");
-  assert(train_in.compare("") != 0);
-  cerr << "Reading training data from " << train_in << "...\n";
-  {
-    ifstream in(train_in);
-    assert(in);
-    while(getline(in, line)) {
-      auto found = line.find("# SentID");
-      if (found == std::string::npos) {
-        ++tlc;
-        int nc = 0;
-        vector<int> x,y;
-        read_sentence_pair(line, x, d, y, td);
-        assert(x.size() == y.size());
-        if (x.size() == 0) { cerr << line << endl; abort(); }
-        training.push_back(make_pair(x,y));
-        for (unsigned i = 0; i < y.size(); ++i) {
-          if (y[i] != kNONE) { ++nc; }
+  if (doing_train) {
+    kNONE = td.convert("*");
+    kSOS = d.convert("<s>");
+    kEOS = d.convert("</s>");
+    string line;
+    int tlc = 0;
+    int ttoks = 0;
+    string train_in = get_string_arg(argc, argv, "-train");
+    assert(train_in.compare("") != 0);
+    cerr << "Reading training data from " << train_in << "...\n";
+    {
+      ifstream in(train_in);
+      assert(in);
+      while(getline(in, line)) {
+        auto found = line.find("# SentID");
+        if (found == std::string::npos) {
+          ++tlc;
+          int nc = 0;
+          vector<int> x,y;
+          read_sentence_pair(line, x, d, y, td);
+          assert(x.size() == y.size());
+          if (x.size() == 0) { cerr << line << endl; abort(); }
+          training.push_back(make_pair(x,y));
+          for (unsigned i = 0; i < y.size(); ++i) {
+            if (y[i] != kNONE) { ++nc; }
+          }
+          if (nc == 0) {
+            cerr << "No tagged tokens in line " << tlc << endl;
+            abort();
+          }
+          ttoks += x.size();
         }
-        if (nc == 0) {
-          cerr << "No tagged tokens in line " << tlc << endl;
-          abort();
-        }
-        ttoks += x.size();
       }
+      cerr << tlc << " lines, " << ttoks << " tokens, " << d.size() << " types\n";
+      cerr << "Tags: " << td.size() << endl;
     }
-    cerr << tlc << " lines, " << ttoks << " tokens, " << d.size() << " types\n";
-    cerr << "Tags: " << td.size() << endl;
+
+    d.freeze(); // no new word types allowed
+    td.freeze(); // no new tag types allowed
+    d.set_unk("UNKNOWN_WORD");
+    td.set_unk("UNKNOWN_TAG");
+
+    ostringstream file_dw;
+    ostringstream file_dt;
+    file_dw << prefix << ".dict.words";
+    file_dt << prefix << ".dict.tags";
+    ofstream ows(file_dw.str());
+    ofstream ots(file_dt.str());
+    boost::archive::text_oarchive ow(ows);
+    boost::archive::text_oarchive ot(ots);
+    ow << d;
+    ot << td;
+  } else {
+    string words_infile = get_string_arg(argc, argv, "-word-dict");
+    string tags_infile = get_string_arg(argc, argv, "-tag-dict");
+    cerr << "Reading existing word dictionary from: " << words_infile << endl;
+    cerr << "Reading existing tag dictionary from: " << tags_infile << endl;
+    ifstream words_in(words_infile);
+    ifstream tags_in(tags_infile);
+    boost::archive::text_iarchive words_in_archive(words_in);
+    boost::archive::text_iarchive tags_in_archive(tags_in);
+    words_in_archive >> d;
+    tags_in_archive >> td;
   }
-  d.freeze(); // no new word types allowed
-  td.freeze(); // no new tag types allowed
-  d.set_unk("UNKNOWN_WORD");
-  td.set_unk("UNKNOWN_TAG");
+
   VOCAB_SIZE = d.size();
   TAG_SIZE = td.size();
 
@@ -307,6 +334,7 @@ int main(int argc, char** argv) {
     {
       ifstream in(dev_in);
       assert(in);
+      string line;
       while(getline(in, line)) {
         auto found = line.find("# SentID");
         if (found == std::string::npos) {
@@ -331,6 +359,7 @@ int main(int argc, char** argv) {
     {
       ifstream in(test_fname);
       assert(in);
+      string line;
       while(getline(in, line)) {
         // Get the ID
         auto found = line.find("# SentID");
@@ -369,12 +398,7 @@ int main(int argc, char** argv) {
 
   if (doing_test) {
     ostringstream os;
-    os << prefix
-       << '.' << LAYERS
-       << '.' << INPUT_DIM
-       << '.' << HIDDEN_DIM
-       << '.' << TAG_HIDDEN_DIM
-       << "-pid" << getpid() << ".data";
+    os << prefix << ".data";
     const string fname = os.str();
 
     graphparser::Scores scores_for_saving;
@@ -413,12 +437,7 @@ int main(int argc, char** argv) {
 
     // Prepare filename for model storage, and write dictionaries
     ostringstream os;
-    os << prefix
-       << '_' << LAYERS
-       << '_' << INPUT_DIM
-       << '_' << HIDDEN_DIM
-       << '_' << TAG_HIDDEN_DIM
-       << "-pid" << getpid() << ".params";
+    os << prefix << ".params";
     const string fname = os.str();
     cerr << "Parameters will be written to: " << fname << endl;
 
