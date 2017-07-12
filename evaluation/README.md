@@ -2,12 +2,29 @@
 
 These scripts provide evaluation metrics for (1) nulls and traces in the standard PTB representation, (2) all structure in our representation.
 
+## Preparing output
+
+First, when the parser fails it produces a parse where every word is assigned 'NO_TAG'.
+That is not a valid parse, so run this script to replace those parses with a single NP.
+
+```Shell
+python3 fix-no-tag.py < data.system.out > data.system.shp
+```
+
+(TODO - Alter the parser to avoid this).
+
+Then use the script in the format conversion folder to convert to the ptb format (see more details in the README.md with that file):
+
+```Shell
+python reprint_trees.py -i h -o o -e he < data.system.shp > data.system.ptb
+```
+
 ## Null and Trace Evaluation - ptb-trace-eval.py
 
 Basic usage is:
 
 ```Shell
-python ptb-trace-eval.py data.gold data.system
+python ptb-trace-eval.py data.gold.ptb data.system.ptb
 ```
 
 Where `data.gold` is the gold standard parses and `data.system` is the output of a parser.
