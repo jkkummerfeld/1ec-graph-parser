@@ -62,7 +62,7 @@ traceRankEval 0.067
 traceRatioEval 0.011
 " > ${prefix}.localStageFinal
 
-java -Xmx48g -jar parser.jar edu.berkeley.nlp.graphparser.JKKMain \
+java -Xmx31g -jar parser.jar edu.berkeley.nlp.graphparser.JKKMain \
   -runtest \
   -stageConfigs ${prefix}.arcStage,${prefix}.arcStage2,${prefix}.localStageFinal \
   -evalGoldPOS False \
