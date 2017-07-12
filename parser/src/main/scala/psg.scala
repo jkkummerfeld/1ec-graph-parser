@@ -1,10 +1,10 @@
-// Graph Parser
+// 1EC Graph Parser
 // Copyright (c) University of California
 // Copyright (c) Jonathan Kummerfeld
 //
-// This software is covered by a non-commercial use license.  See the
-// LICENSE.txt file in the top-level directory of this distribution or at
-// https://github.com/jkkummerfeld/graph-parser for the full text of the
+// This software is covered by a license.  See the LICENSE.txt file in the
+// top-level directory of this distribution or at
+// https://github.com/jkkummerfeld/1ec-graph-parser for the full text of the
 // license.
 
 package edu.berkeley.nlp.graphparser.psg
