@@ -16,8 +16,8 @@ spine_data=/model-spines.gz
 data=$2
 data_pos=$3
 
-if [ $# -ge 4 ]; 
-  spine_data="external ${spine_data}"
+if [ $# -ge 4 ] ; then
+  spine_data="external $4"
 fi
 
 echo "
@@ -62,7 +62,7 @@ traceRankEval 0.067
 traceRatioEval 0.011
 " > ${prefix}.localStageFinal
 
-java -Xmx31g -jar parser.jar edu.berkeley.nlp.graphparser.JKKMain \
+java -Xmx31g -jar parser-with-models.jar edu.berkeley.nlp.graphparser.JKKMain \
   -runtest \
   -stageConfigs ${prefix}.arcStage,${prefix}.arcStage2,${prefix}.localStageFinal \
   -evalGoldPOS False \

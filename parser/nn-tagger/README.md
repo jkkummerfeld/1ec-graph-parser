@@ -45,7 +45,7 @@ python3 pre-process.py < example-data-with-ids.tok > example-data-with-ids.tok.s
 You will need the model and dictionaries available here (TODO).
 
 ```Shell
-./spine-tagger -word-dict example.dict.tags -tag-dict example.dict.tags -model model.params -test example-data-with-ids.tok.simple -prefix example
+./spine-tagger -word-dict example.dict.words -tag-dict example.dict.tags -model model.params -test example-data-with-ids.tok.simple -prefix example
 ```
 
 Note, this does not actually return the 1-best tag sequence by default.

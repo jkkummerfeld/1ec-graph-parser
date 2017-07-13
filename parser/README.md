@@ -5,7 +5,7 @@ This folder contains the first-order parser and a neural network tagger.
 The simplest way to run this code is to use the jar at (TODO) amd run:
 
 ```Shell
-./run.sh example-output example-data.tok example-data.pos
+./run-parser.sh example-output example-data.tok example-data.pos
 ```
 
 If you wish to use the neural network spine pruner for faster and more accurate parsing, then
@@ -13,8 +13,13 @@ see the readme in its folder for directions, and run the parser like this:
 
 ```Shell
 (run the spine tagger/pruner to generate example-spines.data)
-./run.sh example-output example-data-with-ids.tok example-data.pos example-spines.data
+./run-parser.sh example-output example-data-with-ids.tok example-data.pos example-spines.data
 ```
+
+# Building
+
+This directory is set up to work with sbt (the simple build tool).
+As well as the standard sbt commands (e.g. `compile`) it also supports `assembly`, which creates a single jar with all of the necessary classes and resources.
 
 # Options
 
