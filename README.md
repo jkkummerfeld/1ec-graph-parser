@@ -8,7 +8,7 @@ TODO:
 - Example output / figures
 
 This repository contains software to do several things related to syntax - parsing, format conversion, and evaluation.
-For a full description of the method, and discussion of results when applied to a range of well known parsers, see:
+For a full description of the algorithm, proofs of properties, and results on the standard metrics, see:
 
    [Parsing with Traces: An O(n^4) Algorithm and a Structural Representation](TODO)
    Jonathan K. Kummerfeld and Dan Klein,
