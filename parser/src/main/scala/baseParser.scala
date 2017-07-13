@@ -4613,10 +4613,10 @@ abstract class Parser(
       s"Post $thisClass parse for sentence: "+ tokens.mkString(" ") +"\n"+
       s"$thisClass post parse : $score ${tokens.length} $time $lossType ${fineChart.stats}\n"+
       mem_info+
-      (
-        if (fineChart.chartScoreCache == null) s"$thisClass cache used 0 of 1"
-        else s"$thisClass cache used ${fineChart.chartScoreCache.size} of ${fineChart.chartScoreCache.data.length}\n"
-      ) +
+///      (
+///        if (fineChart.chartScoreCache == null) s"$thisClass cache used 0 of 1"
+///        else s"$thisClass cache used ${fineChart.chartScoreCache.size} of ${fineChart.chartScoreCache.data.length}\n"
+///      ) +
       (if (check(VParseExtraction + VParseChart, verbosity)) fineChart.toString() +"\n" else "") +
       (if (check(VParseExtraction, verbosity)) denseChartString.toString() +"\n" else "") +
       (if (check(VCellSizes, verbosity)) chartSizesString.toString() +"\n" else "")

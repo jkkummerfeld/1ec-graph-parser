@@ -102,11 +102,21 @@ object ObjectWriter {
 
 object ObjectReader {
   def load(filename: String): Object = {
-    val file = new BufferedInputStream(new FileInputStream(filename))
-    val in = new ObjectInputStream(new GZIPInputStream(file))
-    val obj = in.readObject()
-    in.close()
-    obj
+    if (filename.startsWith("/") && filename.split("/").length == 2) {
+      // In scala 2.12.12 use:
+      // new BufferedInputStream(Source.fromResource(filename))
+      val file = new BufferedInputStream(getClass.getResourceAsStream(filename))
+      val in = new ObjectInputStream(new GZIPInputStream(file))
+      val obj = in.readObject()
+      in.close()
+      obj
+    } else {
+      val file = new BufferedInputStream(new FileInputStream(filename))
+      val in = new ObjectInputStream(new GZIPInputStream(file))
+      val obj = in.readObject()
+      in.close()
+      obj
+    }
   }
 }
 
