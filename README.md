@@ -10,11 +10,11 @@ TODO:
 This repository contains software to do several things related to syntax - parsing, format conversion, and evaluation.
 For a full description of the algorithm, proofs of properties, and results on the standard metrics, see:
 
-   [Parsing with Traces: An O(n^4) Algorithm and a Structural Representation](TODO)
+   - [Parsing with Traces: An O(n^4) Algorithm and a Structural Representation](TODO)
    Jonathan K. Kummerfeld and Dan Klein,
    TACL 2017
 
-   [Algorithms for Identifying Syntactic Errors and Parsing with Graph Structured Output](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-138.html)
+   - [Algorithms for Identifying Syntactic Errors and Parsing with Graph Structured Output](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-138.html)
    Jonathan K. Kummerfeld
    PhD Dissertation, UC Berkeley
 
