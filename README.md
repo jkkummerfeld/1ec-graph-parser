@@ -10,7 +10,7 @@ TODO:
 This repository contains software to do several things related to syntax - parsing, format conversion, and evaluation.
 For a full description of the algorithm, proofs of properties, and results on the standard metrics, see:
 
-   - [Parsing with Traces: An O(n^4) Algorithm and a Structural Representation](TODO)
+   - Parsing with Traces: An O(n^4) Algorithm and a Structural Representation
    Jonathan K. Kummerfeld and Dan Klein,
    TACL 2017
 
