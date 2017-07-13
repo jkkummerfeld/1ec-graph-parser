@@ -33,7 +33,7 @@ unsigned TAG_HIDDEN_DIM = 64;
 unsigned TAG_SIZE = 0;
 unsigned VOCAB_SIZE = 0;
 
-double CUTOFF_RATIO = 1.0;
+double CUTOFF_RATIO = 0.5;
 
 dynet::Dict d;
 dynet::Dict td;

@@ -11,6 +11,7 @@ index_prefix=/index-1ec.
 
 # Special case - this can be either a model or a protocol buffer
 spine_data=/model-spines.gz
+spine_ratio="0.019"
 
 # Note, the IDs in the data must match the spine data
 data=$2
@@ -18,6 +19,7 @@ data_pos=$3
 
 if [ $# -ge 4 ] ; then
   spine_data="external $4"
+  spine_ratio="0.747"
 fi
 
 echo "
@@ -55,7 +57,7 @@ name localStageFinal
 parserType local
 rules ${inference_rules}
 spineModel ${spine_data}
-spineRatioEval 0.747
+spineRatioEval ${spine_ratio}
 subbeamType spines
 traceModel ${trace_model}
 traceRankEval 0.067
