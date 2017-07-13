@@ -42,7 +42,7 @@ python3 pre-process.py < example-data-with-ids.tok > example-data-with-ids.tok.s
 
 ### Run the tagger
 
-You will need the model and dictionaries available here (TODO).
+You will need the model and dictionaries (available [here](https://www.dropbox.com/s/m0jjylo1mantz7q/Kummerfeld-Klein-2017.tagger.models.tgz?dl=0)).
 
 ```Shell
 ./spine-tagger -word-dict example.dict.words -tag-dict example.dict.tags -model model.params -test example-data-with-ids.tok.simple -prefix example

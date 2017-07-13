@@ -11,8 +11,6 @@ That is not a valid parse, so run this script to replace those parses with a sin
 python3 fix-no-tag.py < data.system.out > data.system.shp
 ```
 
-(TODO - Alter the parser to avoid this).
-
 Then use the script in the format conversion folder to convert to the ptb format (see more details in the README.md with that file):
 
 ```Shell

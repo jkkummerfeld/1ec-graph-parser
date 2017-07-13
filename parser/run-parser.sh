@@ -2,6 +2,10 @@
 
 prefix=$1
 
+# Note, the IDs in the data must match the spine data
+data=$2
+data_pos=$3
+
 arc_model=/model-arc-proj.gz
 arc1ec_model=/model-arc-1ec.gz
 trace_model=/model-trace.gz
@@ -12,10 +16,6 @@ index_prefix=/index-1ec.
 # Special case - this can be either a model or a protocol buffer
 spine_data=/model-spines.gz
 spine_ratio="0.019"
-
-# Note, the IDs in the data must match the spine data
-data=$2
-data_pos=$3
 
 if [ $# -ge 4 ] ; then
   spine_data="external $4"
@@ -64,7 +64,7 @@ traceRankEval 0.067
 traceRatioEval 0.011
 " > ${prefix}.localStageFinal
 
-java -Xmx31g -jar parser-with-models.jar edu.berkeley.nlp.graphparser.JKKMain \
+java -Xmx31g -jar Kummerfeld-Klein-2017.parser.with-models.jar edu.berkeley.nlp.graphparser.JKKMain \
   -runtest \
   -stageConfigs ${prefix}.arcStage,${prefix}.arcStage2,${prefix}.localStageFinal \
   -evalGoldPOS False \

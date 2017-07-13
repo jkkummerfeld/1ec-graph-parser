@@ -2,7 +2,7 @@ This folder contains the first-order parser and a neural network tagger.
 
 # Simple usage
 
-The simplest way to run this code is to use the jar at (TODO) amd run:
+The simplest way to run this code is to use [this jar (494 Mb)](https://www.dropbox.com/s/ufvr9bbtpvikxod/Kummerfeld-Klein-2017.parser.with-models.jar?dl=0) containing the parser and models amd run:
 
 ```Shell
 ./run-parser.sh example-output example-data.tok example-data.pos
@@ -15,6 +15,9 @@ see the readme in its folder for directions, and run the parser like this:
 (run the spine tagger/pruner to generate example-spines.data)
 ./run-parser.sh example-output example-data-with-ids.tok example-data.pos example-spines.data
 ```
+
+You can also download a [jar without models (13 Mb)](https://www.dropbox.com/s/ppvxh9lrzh6djoi/Kummerfeld-Klein-2017.parser.jar?dl=0) and the [models (481 Mb)](https://www.dropbox.com/s/l46ibjqmuts770o/Kummerfeld-Klein-2017.models.tgz?dl=0) separately.
+Note, you will need to modify run-parser.sh to refer to these models rather than have it search inside the jar (which it does for all files starting with a `/` and containing only one `/`).
 
 # Building
 
