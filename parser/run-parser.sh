@@ -26,7 +26,7 @@ cubeDepth 100000
 modelFilename ${arc_model}
 name arcStage
 parserType arc
-pruningRatioEval 0.667
+pruningRatioEval 0.756
 " > ${prefix}.arcStage
 
 echo "
@@ -55,7 +55,7 @@ name localStageFinal
 parserType local
 rules ${inference_rules}
 spineModel ${spine_data}
-spineRatioEval 0.699
+spineRatioEval 0.747
 subbeamType spines
 traceModel ${trace_model}
 traceRankEval 0.067
