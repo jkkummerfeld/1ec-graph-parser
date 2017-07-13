@@ -1,11 +1,7 @@
 # 1ec-graph-parser
 
-TODO:
-- Put the parser jar (big and small) and models somewhere (CCK and normal models)
-- Example output / figures
-
 This repository contains software to do several things related to syntax - parsing, format conversion, and evaluation.
-For a full description of the algorithm, proofs of properties, and results on the standard metrics, see:
+For a full description of our parsing algorithm, proofs of its properties, and results on the standard metrics, see:
 
    - Parsing with Traces: An O(n^4) Algorithm and a Structural Representation
    Jonathan K. Kummerfeld and Dan Klein,
@@ -36,25 +32,24 @@ If you use this code in your own work, please cite the TACL paper:
 In the Penn Treebank, parses have (1) a core projective tree structure and (2) traces that represent control structures, wh-movement and more.
 However, most parsers and the standard evaluation metric (evalb) ignore the traces and all null elements, focusing entirely on the tree structure.
 These aspects of syntax are excluded not because of disagreements regarding theory, but rather because of the computational challenge of including them.
+
 This work is about a new inference algorithm that efficiently finds the maximum scoring graph parse for a sentence when using a first-order model.
+Our approach involves (1) the algorithm, which builds upon the non-projective tree parsing algorithm of [Pitler et al. (2013)](https://www.aclweb.org/anthology/Q/Q13/Q13-1002.pdf), and (2) a syntactic representation, similar to several prior approaches, particularly [Carreras et al. (2008)](https://www.aclweb.org/anthology/W/W08/W08-2102.pdf).
+For more details, see the paper and dissertation above.
 
-To work on constituency parses, our algorithm requires a modification of the parse representation.
-We provide 
+This repository contains:
 
-The subdirectories contain documentation of each component:
-
-- parser, the one-endpoint crossing graph parser
-- parser/nn-tagger, the neural network based spine tagger we use for pruning
-- evaluation, scripts to evaluate (1) parses in our representation, (2) PTB parses with traces (implementing Johnson (2002)'s metric)
-- format-conversion, scripts to convert between different ways of representing Penn Treebank style annotations
-- rule-generation, scripts to generate the inference rules for our algorithm from the templates we define
-- properties, scripts to check properties of parses, and some stats about the data
+- A parser that implements our algorithm
+- An evaluation for traces that processes standard PTB data, using the metric proposed by [Johnson (2002)](https://www.aclweb.org/anthology/P/P02/P02-1018.pdf)
+- An evaluation for parses that processes our representation
+- Tools to convert back-and-forth between our representation and the standard PTB representation
+- Tools to generate the inference rules for our algorithm from the templates we define in the paper
 
 All of the scripts are in python and can be run without downloading or installing any additional resources (note, all should work with python 2.7, only some work with python 3).
 The parser is in scala, but can be downloaded as a jar that runs with java.
-The nn-tagger is written in C++ and depends on several libraries (we provide a makefile and information about what else needs to be installed).
+For pruning we use a tagger written in C++ that depends on several libraries (we provide a makefile and information about what else needs to be installed).
 
-For detailed information on each component, see the relevant directory.
+For detailed information on each component, see the README.md file in each directory.
 
 # Reproducing the results in the paper
 
@@ -105,4 +100,5 @@ Thank you!
 ## TODO
 
 - Adjust the parser to avoid the need for the fix-no-tag.py script (and even better, see if these cases are indicative of a programming bug)
-- 
+- Add models that are trained on the CCK-style head rules
+- Add example output / figures
