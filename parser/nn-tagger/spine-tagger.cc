@@ -320,6 +320,10 @@ int main(int argc, char** argv) {
     boost::archive::text_iarchive tags_in_archive(tags_in);
     words_in_archive >> d;
     tags_in_archive >> td;
+
+    kNONE = td.convert("*");
+    kSOS = d.convert("<s>");
+    kEOS = d.convert("</s>");
   }
 
   VOCAB_SIZE = d.size();
