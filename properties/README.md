@@ -11,10 +11,20 @@ Example run:
 
 ```Shell
 python3 check_for_locked_chain.py < example.shp
-This is not a real parse .
 ```
 
 The example file contains two made up parses, one of which contains a locked chain, and one of which does not.
+Running the script will produce:
+
+```
+1 This     DT  ADVP                     3 NP_0   6 ADVP_0 T ADVP_0 F *
+2 fake     NN  ADVP_NP                  3 NP_0   4 NP_0 T NP_0 F *      7 ADVP_0 T ADVP_0 F *
+3 parse    NN  NP                       5 NP_0
+4 has      DT  (NP_(*))_NP              5 NP_0   6 NP_0 T NP_0 F *
+5 a        NN  NP                       7 NP_0
+6 locked   NN  (NP_(*))_(ADVP_(*))_NP   7 NP_0
+7 chain    VBD (ADVP_(*))_NP            0 ROOT_0
+```
 
 ### count_unique_dev_spines.py
 

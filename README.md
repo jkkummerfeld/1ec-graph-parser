@@ -8,7 +8,7 @@ For a full description of our parsing algorithm, proofs of its properties, and r
    TACL 2017
 
    - [Algorithms for Identifying Syntactic Errors and Parsing with Graph Structured Output](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-138.html)
-   Jonathan K. Kummerfeld
+   Jonathan K. Kummerfeld,
    PhD Dissertation, UC Berkeley
 
 
@@ -92,6 +92,8 @@ all 2619 3893 3524 74.3189557321 67.2745954277 70.6215450991
 all 3153 3864 3522 89.5229982964 81.599378882 85.3777416734
 ```
 
+These numbers are (count of matching, gold total, test total, precision, recall, f-score).
+
 ## Questions
 
 If you find bugs or have questions about any of this software please either contact me (jkk@cs.berkeley.edu) or create an issue.
@@ -102,3 +104,5 @@ Thank you!
 - Adjust the parser to avoid the need for the fix-no-tag.py script (and even better, see if these cases are indicative of a programming bug)
 - Add models that are trained on the CCK-style head rules
 - Add example output / figures
+- Add step by step instructions on installing the necessary libraries for the tagger
+- Write a script to make the run process for the tagger a one-step procedure

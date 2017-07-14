@@ -69,7 +69,3 @@ Instead, it generates tag distributions that can then be used for pruning.
 
 For training I suggest increasing the memory DyNet uses with `--dynet-mem 6000` and setting the number of threads for the Intel MKL library with `export MKL_NUM_THREADS=4`.
 
-## TODO:
-
-- Add step by step instructions on installing the necessary libraries
-- Write a script to make the run process a one-step procedure

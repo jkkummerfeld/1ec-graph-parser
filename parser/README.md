@@ -22,11 +22,11 @@ Note, you will need to modify run-parser.sh to refer to these models rather than
 # Building
 
 This directory is set up to work with sbt (the simple build tool).
-As well as the standard sbt commands (e.g. `compile`) it also supports `assembly`, which creates a single jar with all of the necessary classes and resources.
+As well as the standard sbt commands (e.g. `compile`) it also supports `assembly`, which creates a single jar with all of the necessary classes and resources (though not models, which can be added with `jar uf jar-to-edit.jar model.gz model2.gz...`).
 
 # Options
 
-The parser consists of a set of stages, which are run in order, with each stage used to prune options for the next stage.
+The parser consists of a set of stages, which are run in order, with each stage used to prune during the next stage.
 Configuring a run involves setting options for the stages (which are saved in files, one file per stage) and then setting command line arguments.
 
 ## Stage options
@@ -70,7 +70,7 @@ The options are:
 - `verbosityEvalInTrain` A number indicating what logging to do when evaluating during training
 - `verbosityTrain` A number indicating what logging to do when training
 
-For verbosity values, the number is a sum of values that each indicate a type of logging:
+For verbosity values, the number can be used to indicated multiple types of output by using the sum of their values:
 
 - 1, VParseExtraction, The final parse in terms of items
 - 2, VGrammarExtraction, Currently not used
@@ -86,7 +86,6 @@ For verbosity values, the number is a sum of values that each indicate a type of
 - 2048, VParseChartWithGold, Print information when an item is added but only because we are avoiding gold pruning
 
 ## Parser options
-These are specified in a file with one line per option.
 
 Input and General Configuration
 - `evalAutoPOS` Filename for POS tags for evaluation data (specified as space separated POS tags, one sentence per line)
@@ -166,6 +165,8 @@ Model
 - `useBetweenFeatures` Use features on the POS tags on words between the two ends of an edge (default = `true`)
 
 # Design
+
+Some design notes didn't make it into the paper, but are included here.
 
 ### Beams
 

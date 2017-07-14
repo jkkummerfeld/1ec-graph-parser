@@ -1,15 +1,15 @@
 1 This     DT  ADVP                     3 NP_0   6 ADVP_0 T ADVP_0 F *
-2 is       NN  ADVP_NP                  3 NP_0   4 NP_0 T NP_0 F *      7 ADVP_0 T ADVP_0 F *
-3 not      NN  NP                       5 NP_0
-4 a        DT  (NP_(*))_NP              5 NP_0   6 NP_0 T NP_0 F *
-5 real     NN  NP                       7 NP_0
-6 parse    NN  (NP_(*))_(ADVP_(*))_NP   7 NP_0
-7 .        VBD (ADVP_(*))_NP            0 ROOT_0
+2 fake     NN  ADVP_NP                  3 NP_0   4 NP_0 T NP_0 F *      7 ADVP_0 T ADVP_0 F *
+3 parse    NN  NP                       5 NP_0
+4 has      DT  (NP_(*))_NP              5 NP_0   6 NP_0 T NP_0 F *
+5 a        NN  NP                       7 NP_0
+6 locked   NN  (NP_(*))_(ADVP_(*))_NP   7 NP_0
+7 chain    VBD (ADVP_(*))_NP            0 ROOT_0
 
 1 This     DT  ADVP                     3 NP_0
-2 is       NN  ADVP_NP                  3 NP_0
-3 also     NN  NP                       5 NP_0
-4 not      DT  (NP_(*))_NP              5 NP_0
-5 a        NN  NP                       7 NP_0
-6 real     NN  (NP_(*))_(ADVP_(*))_NP   7 NP_0
-7 parse    VBD (ADVP_(*))_NP            0 ROOT_0
+2 fake     NN  ADVP_NP                  3 NP_0
+3 parse    NN  NP                       5 NP_0
+4 has      DT  (NP_(*))_NP              5 NP_0
+5 no       NN  NP                       7 NP_0
+6 locked   NN  (NP_(*))_(ADVP_(*))_NP   7 NP_0
+7 chain    VBD (ADVP_(*))_NP            0 ROOT_0

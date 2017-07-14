@@ -103,16 +103,19 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     cur = []
+    lines = []
     sentence = ""
     for line in sys.stdin:
         if len(line.strip()) == 0:
             if len(cur) > 0:
                 if check_edges(cur):
-                    print(sentence)
+###                    print(sentence)
+                    print('\n'.join(lines))
             cur = []
             sentence = ""
         elif line[0] not in '#\n':
             parts = line.strip().split()
+            lines.append(line[:-1])
             sentence += " "+ parts[1]
             start = int(parts[0])
             add_pair(start, int(parts[4]), cur)
