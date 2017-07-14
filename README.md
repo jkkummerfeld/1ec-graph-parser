@@ -3,7 +3,7 @@
 This repository contains software to do several things related to syntax - parsing, format conversion, and evaluation.
 For a full description of our parsing algorithm, proofs of its properties, and results on the standard metrics, see:
 
-   - Parsing with Traces: An O(n^4) Algorithm and a Structural Representation
+   - [Parsing with Traces: An O(n^4) Algorithm and a Structural Representation](https://arxiv.org/abs/1707.04221)
    Jonathan K. Kummerfeld and Dan Klein,
    TACL 2017
 
