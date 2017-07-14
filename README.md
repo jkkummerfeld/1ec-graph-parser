@@ -81,16 +81,11 @@ parser/nn-tagger/spine-tagger -word-dict dict.words -tag-dict dict.tags -model m
 ./run-parser.sh test.parser test-with-ids.tok wsj23.pos.stanford wsj23.tagged.data
 python3 evaluation/fix-no-tag.py < test.parser.auto_all.localStageFinal > test.parser.shp
 python format-conversion/reprint_trees.py -i h -o o -e he < test.parser.shp > test.parser.ptb
-python evaluation/ptb-trace-eval.py test.gold.ptb test.system.ptb | tail -n 1
-python evaluation/ptb-trace-eval.py test.gold.ptb test.system.ptb --null_only | tail -n 1
+python evaluation/ptb-trace-eval.py test.gold.ptb test.parser.ptb | tail -n 1
+python evaluation/ptb-trace-eval.py test.gold.ptb test.parser.ptb --null_only | tail -n 1
 ```
 
 The final two commands give performance on (1) traces and other null items, (2) nulls only.
-The results should be:
-
-```Shell
-TODO
-```
 
 ## Questions
 
@@ -99,6 +94,7 @@ Thank you!
 
 ## TODO
 
+- Add expected output of the run above
 - Adjust the parser to avoid the need for the fix-no-tag.py script (and even better, see if these cases are indicative of a programming bug)
 - Add models that are trained on the CCK-style head rules
 - Add example output / figures
