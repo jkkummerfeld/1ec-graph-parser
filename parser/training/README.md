@@ -38,8 +38,9 @@ If there are more than 2^16 word types then some features may be miscalculated.
 
 This is unlike all the other stages since it is a separate program. The arguments used are:
 
+- Used 6,000 Mb of RAM (set with `--dynet-mem 6000`)
+
 ```
---dynet-mem 6000
 -train train.txt
 -dev dev.txt
 -layers 2
@@ -53,7 +54,7 @@ This is unlike all the other stages since it is a separate program. The argument
 
 Before implementing the tagger I had a simple classifier implemented, which is what I actually used to train the model.
 
-Note, I ran this with 14 Gb of RAM.
+- Used 14 Gb of RAM
 
 ```
 -traintest
@@ -121,7 +122,7 @@ Note, I ran this with 14 Gb of RAM.
 
 ## Trace Classifier
 
-Note, I ran this with 14 Gb of RAM.
+- Used 14 Gb of RAM
 
 ```
 -traintest
@@ -189,10 +190,8 @@ Note, I ran this with 14 Gb of RAM.
 
 ## Projective Arc Parser
 
-Note:
-
 - This is trained with 4 threads in the configuration below
-- I ran it with 29 Gb of RAM (and decreasing the number of threads will only slightly help this).
+- Used 29 Gb of RAM (and decreasing the number of threads will only slightly help this).
 
 ```
 -traintest
@@ -256,10 +255,8 @@ Note:
 
 ## One-endpoint Crossing Arc Parser
 
-Note:
-
 - This is trained with 3 threads in the configuration below
-- I ran it with 29 Gb of RAM (and decreasing the number of threads will only slightly help this).
+- Used 29 Gb of RAM (and again, decreasing the number of threads will only slightly help this)
 
 ```
 -traintest
@@ -328,7 +325,7 @@ Note:
 
 ## One-endpoint Crossing Full Parser
 
-Note, I ran this with 48 Gb of RAM.
+- Used 48 Gb of RAM
 
 ```
 -traintest
