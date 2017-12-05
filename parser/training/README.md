@@ -28,11 +28,11 @@ In each section below I mention how much RAM I used.
 If you want to train on different data you may break some assumptions in the code:
 
 - There are at most 100 POS tag types
-- There are at most 2^16 unique words
 - Sentences have at most 253 words
 
 The system may still run when these assumptions are violated (sorry...), but could behave strangely.
 Number of arc types and spine types should be fine up to 2^32 (though memory will be issue before that point).
+If there are more than 2^16 word types then some features may be miscalculated.
 
 ## Spine Tagger
 
