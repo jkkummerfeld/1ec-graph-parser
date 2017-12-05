@@ -1,0 +1,15 @@
+beamMaxLength 10000
+cubeDepth 100000
+doCrossing false
+doGraphs false
+eval false
+modelFilename results.arc.model.gz
+name arcStage
+parserType arc
+pruningRatioEval 0.756
+pruningRatioEvalInTrain 0.756
+pruningRatioTrain 0.756
+subbeamType state
+verbosityEval 0
+verbosityEvalInTrain 0
+verbosityTrain 0
