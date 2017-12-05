@@ -23,6 +23,17 @@ The configuration provided here has verbosityTrain = 512, which means it will pr
 Finally, when making design decisions I often erred on the side of using more RAM to get higher speed (caching, etc).
 In each section below I mention how much RAM I used.
 
+## Assumptions
+
+If you want to train on different data you may break some assumptions in the code:
+
+- There are at most 100 POS tag types
+- There are at most 2^16 unique words
+- Sentences have at most 253 words
+
+The system may still run when these assumptions are violated (sorry...), but could behave strangely.
+Number of arc types and spine types should be fine up to 2^32 (though memory will be issue before that point).
+
 ## Spine Tagger
 
 This is unlike all the other stages since it is a separate program. The arguments used are:
