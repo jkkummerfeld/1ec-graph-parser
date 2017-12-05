@@ -24,6 +24,10 @@ Note, you will need to modify run-parser.sh to refer to these models rather than
 This directory is set up to work with sbt (the simple build tool).
 As well as the standard sbt commands (e.g. `compile`) it also supports `assembly`, which creates a single jar with all of the necessary classes and resources (though not models, which can be added with `jar uf jar-to-edit.jar model.gz model2.gz...`).
 
+## Training
+
+For detailed information about the configuration I used for training, see the README.md in the training directory.
+
 # Options
 
 The parser consists of a set of stages, which are run in order, with each stage used to prune during the next stage.
