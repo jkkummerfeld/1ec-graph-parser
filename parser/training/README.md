@@ -34,22 +34,6 @@ The system may still run when these assumptions are violated (sorry...), but cou
 Number of arc types and spine types should be fine up to 2^32 (though memory will be issue before that point).
 If there are more than 2^16 word types then some features may be miscalculated.
 
-## Spine Tagger
-
-This is unlike all the other stages since it is a separate program. The arguments used are:
-
-- Used 6,000 Mb of RAM (set with `--dynet-mem 6000`)
-
-```
--train train.txt
--dev dev.txt
--layers 2
--input-dim 128
--hidden-dim 256
--tag-hidden-dim 64
--prefix results.spine-tagger
-```
-
 ## Spine Classifier
 
 Before implementing the tagger I had a simple classifier implemented, which is what I actually used to train the model.
@@ -392,3 +376,6 @@ Before implementing the tagger I had a simple classifier implemented, which is w
 -useBetweenFeatures True
 ```
 
+## Spine Tagger
+
+See the tagger directory.

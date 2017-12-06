@@ -16,6 +16,28 @@ Note that while most of Boost is just header files, we use the serialization lib
 
 The makefile in this directory should generate the protocol buffer code and build the spine-tagger.
 
+### Training
+
+First you will need to convert the data to the correct format:
+
+```Shell
+python3 ./convert-for-tagger.py <  example-data.shp | python3 ./add_sent_id.py > eample-data.tag-format.txt
+```
+
+Then train the tagger:
+
+```Shell
+./spine-tagger
+  --dynet-mem 6000
+  -train train.tag-format.txt
+  -dev dev.tag-format.txt
+  -layers 2
+  -input-dim 128
+  -hidden-dim 256
+  -tag-hidden-dim 64
+  -prefix results.spine-tagger
+```
+
 ## Running
 
 If you start with tokenised sentences there are several steps in the process:
