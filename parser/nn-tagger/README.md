@@ -21,7 +21,7 @@ The makefile in this directory should generate the protocol buffer code and buil
 First you will need to convert the data to the correct format:
 
 ```Shell
-python3 ./convert-for-tagger.py <  example-data.shp | python3 ./add_sent_id.py > eample-data.tag-format.txt
+python3 ./convert-for-tagger.py --simplify_numbers < example-data.shp | python3 ./add_sent_id.py > eample-data.tag-format.txt
 ```
 
 Then train the tagger:

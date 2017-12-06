@@ -3,9 +3,11 @@
 from __future__ import print_function
 
 import sys
+import string
 import argparse
 
 parser = argparse.ArgumentParser(description='Converts input from standard shp to format for the tagger.')
+parser.add_argument('--simplify_numbers', help='Convert numbers to 0', action='store_true')
 args = parser.parse_args()
 
 words = []
@@ -20,12 +22,29 @@ for line in sys.stdin:
         continue
     else:
         parts = line.strip().split()
-        words.append(parts[1])
+
+        # For the word, consider simplifying the numbers
+        word = parts[1]
+        if args.simplify_numbers:
+            nword = []
+            for char in word:
+                if char not in string.digits:
+                    nword.append(char)
+                elif len(nword) == 0 or nword[-1] not in string.digits:
+                    nword.append("0")
+            word = ''.join(nword)
+
+        # For the spine, make sure to keep the circular links
         spine = parts[3] + ";"
         if len(parts) > 6:
             for i in range(6, len(parts), 6):
                 if parts[i] == parts[0]:
-                    spine += "{}:{}:{}:{}:{};".format(parts[i+1], parts[i+2], parts[i+3], parts[i+4], parts[i+5])
+                    # TODO: This leaves no ; at the end, see if that is actually necessary
+                    if spine[-1] != ';':
+                        spine += ';'
+                    spine += "{}:{}:{}:{}:{}".format(parts[i+1], parts[i+2], parts[i+3], parts[i+4], parts[i+5])
+
+        words.append(word)
         spines.append(spine)
 
 if len(words) > 0:
