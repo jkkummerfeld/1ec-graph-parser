@@ -9,7 +9,7 @@ parserType arc
 pruningRatioEval 0.734
 pruningRatioEvalInTrain 0.734
 pruningRatioTrain 0.734
-rules rules.dec27.gz
+rules inference-rules.gz
 subbeamType state
 traceModel results.trace.model.gz
 traceRank 0.067
