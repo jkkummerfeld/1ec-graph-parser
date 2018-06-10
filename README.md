@@ -1,16 +1,17 @@
 # One-Endpoint Crossing Graph Parser
 
 This repository contains software to do several things related to syntax - parsing, format conversion, and evaluation.
-For a full description of our parsing algorithm, proofs of its properties, and results on the standard metrics, see:
+For a full definition of the parsing algorithm, proofs of its properties, and results on the standard metrics, see:
 
-   - [Parsing with Traces: An O(n^4) Algorithm and a Structural Representation](https://arxiv.org/abs/1707.04221)
+   - [Parsing with Traces: An O(n^4) Algorithm and a Structural Representation](http://aclweb.org/anthology/Q17-1031)
    Jonathan K. Kummerfeld and Dan Klein,
    TACL 2017
+
+If you want to understand the algorithm, my thesis provides a better explanation (the TACL paper focuses on proving properties):
 
    - [Algorithms for Identifying Syntactic Errors and Parsing with Graph Structured Output](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-138.html)
    Jonathan K. Kummerfeld,
    PhD Dissertation, UC Berkeley
-
 
 If you use this code in your own work, please cite the TACL paper:
 
@@ -22,7 +23,7 @@ If you use this code in your own work, please cite the TACL paper:
   volume    = {5},
   year      = {2017},
   pages     = {},
-  url       = {},
+  url       = {http://aclweb.org/anthology/Q17-1031},
   software  = {https://github.com/jkkummerfeld/1ec-graph-parser},
 }
 ```
@@ -99,10 +100,11 @@ These numbers are (count of matching, gold total, test total, precision, recall,
 If you find bugs or have questions about any of this software please either contact me (jkk@cs.berkeley.edu) or create an issue.
 Thank you!
 
-## TODO
+## Misc Notes
 
-- Adjust the parser to avoid the need for the fix-no-tag.py script (and even better, see if these cases are indicative of a programming bug)
-- Add models that are trained on the CCK-style head rules
-- Add example output / figures
-- Add step by step instructions on installing the necessary libraries for the tagger
-- Write a script to make the run process for the tagger a one-step procedure
+The dynamic program definitions in the TACL paper and my thesis are slightly different:
+
+- In response to reviewer feedback I changed the notation for parents.
+- The problematic structures in my thesis got a name (locked chain) and a formal definition.
+- The thesis discusses how to handle chains that are not locked, but I didn't include the necessary details in the dynamic program. The TACL version adds them, using the hat notation.
+
