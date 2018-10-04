@@ -1,5 +1,3 @@
-# One-Endpoint Crossing Graph Parser
-
 This repository contains software to do several things related to syntax - parsing, format conversion, and evaluation.
 For a full definition of the parsing algorithm, proofs of its properties, and results on the standard metrics, see:
 

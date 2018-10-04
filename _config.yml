@@ -1,1 +1,5 @@
 theme: jekyll-theme-cayman
+title: 1EC Graph Parser
+description: Parsing, Format Conversion and Evaluation with One-Endpoint Crossing Graphs.
+show_downloads: true
+google_analytics: UA-19179423-2
