@@ -14,15 +14,17 @@ If you want to understand the algorithm, my thesis provides a better explanation
 If you use this code in your own work, please cite the TACL paper:
 
 ```TeX
-@Article{Kummerfeld-Klein:2017:TACL,
-  author    = {Jonathan K. Kummerfeld and Dan Klein},
-  title     = {Parsing with Traces: An $O(n^4)$ Algorithm and a Structural Representation},
-  journal   = {Transactions of the Association for Computational Linguistics},
-  volume    = {5},
-  year      = {2017},
-  pages     = {},
-  url       = {http://aclweb.org/anthology/Q17-1031},
-  software  = {https://github.com/jkkummerfeld/1ec-graph-parser},
+@article{kummerfeld-klein-2017-parsing,
+    title = "Parsing with Traces: An ${O}(n^4)$ Algorithm and a Structural Representation",
+    author = "Kummerfeld, Jonathan K.  and
+      Klein, Dan",
+    journal = "Transactions of the Association for Computational Linguistics",
+    volume = "5",
+    year = "2017",
+    url = "https://www.aclweb.org/anthology/Q17-1031",
+    doi = "10.1162/tacl_a_00072",
+    pages = "441--454",
+    software  = "https://github.com/jkkummerfeld/1ec-graph-parser",
 }
 ```
 
@@ -76,12 +78,12 @@ Each of these steps is one command below:
 ```Shell
 python3 parser/nn-tagger/add_sent_id.py 200001 < test.tok > test-with-ids.tok
 python3 parser/nn-tagger/pre-process.py < test-with-ids.tok > test-with-ids.tok.simple
-parser/nn-tagger/spine-tagger -word-dict dict.words -tag-dict dict.tags -model model.params -test test.tok -prefix wsj23.tagged
+parser/nn-tagger/spine-tagger -word-dict dict.words -tag-dict dict.tags -model model.params -test test-with-ids.tok.simple -prefix wsj23.tagged
 ./run-parser.sh test.parser test-with-ids.tok wsj23.pos.stanford wsj23.tagged.data
 python3 evaluation/fix-no-tag.py < test.parser.auto_all.localStageFinal > test.parser.shp
-python format-conversion/reprint_trees.py -i h -o o -e he < test.parser.shp > test.parser.ptb
-python evaluation/ptb-trace-eval.py test.gold.ptb test.parser.ptb | tail -n 1
-python evaluation/ptb-trace-eval.py test.gold.ptb test.parser.ptb --null_only | tail -n 1
+python2 format-conversion/reprint_trees.py -i h -o o -e he < test.parser.shp > test.parser.ptb
+python3 evaluation/ptb-trace-eval.py test.gold.ptb test.parser.ptb | tail -n 1
+python3 evaluation/ptb-trace-eval.py test.gold.ptb test.parser.ptb --null_only | tail -n 1
 ```
 
 The final two commands give performance on (1) traces and other null items, (2) nulls only:

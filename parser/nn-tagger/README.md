@@ -5,12 +5,14 @@ It is a modified form of the bidirection LSTM tagger included as an example in D
 
 ## Building
 
-This requires several things to be installed already:
+This requires several other packages:
 
-- C++ Boost (I used 1.63.0)
-- DyNet
-- Eigen (used by DyNet)
-- Google Protocol Buffers
+Package | Version
+------- | ------
+C++ Boost | [1.63.0](https://github.com/boostorg/boost/releases/tag/boost-1.63.0)
+DyNet | [1.1](https://github.com/clab/dynet/releases/tag/v1.1)
+Eigen | Commit f11da1d83b64f66252dcce17447c63bda2c663b7 from [https://gitlab.com/libeigen/eigen.git](https://gitlab.com/libeigen/eigen.git), was changeset 8853:346ecdb306e6 in the mercurial repo at the time
+Google Protocol Buffers | [3.0.0](https://github.com/protocolbuffers/protobuf/releases/tag/v3.0.0)
 
 Note that while most of Boost is just header files, we use the serialization library, which must be compiled.
 

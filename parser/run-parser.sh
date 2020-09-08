@@ -6,15 +6,15 @@ prefix=$1
 data=$2
 data_pos=$3
 
-arc_model=/model-arc-proj.gz
-arc1ec_model=/model-arc-1ec.gz
-trace_model=/model-trace.gz
-full_model=/model-full.gz
-inference_rules=/inference-rules.gz
-index_prefix=/index-1ec.
+arc_model=model-arc-proj.gz
+arc1ec_model=model-arc-1ec.gz
+trace_model=model-trace.gz
+full_model=model-full.gz
+inference_rules=inference-rules.gz
+index_prefix=index-1ec.
 
 # Special case - this can be either a model or a protocol buffer
-spine_data=/model-spines.gz
+spine_data=model-spines.gz
 spine_ratio="0.019"
 
 if [ $# -ge 4 ] ; then
