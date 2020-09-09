@@ -56,34 +56,38 @@ For detailed information on each component, see the README.md file in each direc
 
 You will need:
 
-- `test.tok` The test sentences, one tokenised sentence per line (not provided here)
-- `test.gold.ptb` The test parses, in Penn Treebank format (not provided here)
-- `wsj23.pos.stanford` Automatically generated POS tags for the test data, space separated, one sentence per line (e.g. we used output of [the Stanford POS tagger](https://nlp.stanford.edu/software/tagger.shtml) with default settings. The file we used is [here](https://www.dropbox.com/s/1abj1gux8ssohvs/wsj23.pos.stanford?dl=0))
-- The parser and models: download [here (494 Mb)](https://www.dropbox.com/s/ufvr9bbtpvikxod/Kummerfeld-Klein-2017.parser.with-models.jar?dl=0) as a single jar
-- Various scripts from this repository
+- `wsj23.mrg` The test parses, in Penn Treebank format (not provided here).
+- `wsj23.pos.stanford` Automatically generated POS tags for the test data, space separated, one sentence per line (e.g. we used output of [the Stanford POS tagger](https://nlp.stanford.edu/software/tagger.shtml) with default settings. The file we used is [here](https://www.dropbox.com/s/1abj1gux8ssohvs/wsj23.pos.stanford?dl=0)).
+- The parser and models: download [here (494 Mb)](https://www.dropbox.com/s/ufvr9bbtpvikxod/Kummerfeld-Klein-2017.parser.with-models.jar?dl=0) as a single jar and unzip them in the current folder.
+- Various scripts from this repository.
 - Either (1) The output of the spine tagger (available [here](https://www.dropbox.com/s/345ow8rifmaiae1/wsj23.tagged.data?dl=0)), or (2) the models for the spine tagger (available [here](https://www.dropbox.com/s/m0jjylo1mantz7q/Kummerfeld-Klein-2017.tagger.models.tgz?dl=0)), in which case the spine tagger needs to be built (see parser/nn-tagger/makefile).
 
 Assuming you download the contents of this repo and have all of those file and put them in the same directory as this README.md file, you will need to:
 
-1. Add IDs to the sentences
-2. [Only if running the tagger] Simplify the text
-3. [Only if running the tagger] Run the spine tagger
-4. Run the parser
-5. Fix parses where we failed to produce output
-6. Convert to standard PTB
-7. Evaluate
+1. Get just the text from the gold parses
+2. Add IDs to the sentences
+3. [Only if running the tagger] Simplify the text
+4. [Only if running the tagger] Run the spine tagger
+5. Run the parser
+6. Fix parses where we failed to produce output
+7. Convert to standard PTB
+8. Adjust the format of the gold data
+9. Evaluate traces and nulls
+10. Evaluse nulls only
 
 Each of these steps is one command below:
 
 ```Shell
+python2 format-conversion/reprint_trees.py -i p -o w < wsj23.mrg > test.tok
 python3 parser/nn-tagger/add_sent_id.py 200001 < test.tok > test-with-ids.tok
 python3 parser/nn-tagger/pre-process.py < test-with-ids.tok > test-with-ids.tok.simple
 parser/nn-tagger/spine-tagger -word-dict dict.words -tag-dict dict.tags -model model.params -test test-with-ids.tok.simple -prefix wsj23.tagged
 ./run-parser.sh test.parser test-with-ids.tok wsj23.pos.stanford wsj23.tagged.data
 python3 evaluation/fix-no-tag.py < test.parser.auto_all.localStageFinal > test.parser.shp
 python2 format-conversion/reprint_trees.py -i h -o o -e he < test.parser.shp > test.parser.ptb
-python3 evaluation/ptb-trace-eval.py test.gold.ptb test.parser.ptb | tail -n 1
-python3 evaluation/ptb-trace-eval.py test.gold.ptb test.parser.ptb --null_only | tail -n 1
+python2 format-conversion/reprint_trees.py -i p -o st -e fh < wsj23.mrg > test.gold.ptb
+python2 evaluation/ptb-trace-eval.py test.gold.ptb test.parser.ptb | tail -n 1
+python2 evaluation/ptb-trace-eval.py test.gold.ptb test.parser.ptb --null_only | tail -n 1
 ```
 
 The final two commands give performance on (1) traces and other null items, (2) nulls only:
