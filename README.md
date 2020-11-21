@@ -93,11 +93,20 @@ python2 evaluation/ptb-trace-eval.py test.gold.ptb test.parser.ptb --null_only |
 The final two commands give performance on (1) traces and other null items, (2) nulls only:
 
 ```
-all 2619 3893 3524 74.3189557321 67.2745954277 70.6215450991
+all 2621 3893 3524 74.3757094211 67.3259696892 70.6754752595
 all 3153 3864 3522 89.5229982964 81.599378882 85.3777416734
 ```
 
 These numbers are (count of matching, gold total, test total, precision, recall, f-score).
+
+Note, the first line of results is slightly better than in the paper.
+Prof. Yoshihide Kato identified a bug in my conversion script that meant correlates and remnants had the "=" and "-" indices reversed.
+This bug has now been fixed.
+The original values produced were:
+
+```
+all 2619 3893 3524 74.3189557321 67.2745954277 70.6215450991
+```
 
 ## Questions
 

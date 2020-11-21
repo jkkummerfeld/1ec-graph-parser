@@ -545,15 +545,21 @@ def tree_from_shp(text, allow_empty_labels=False, allow_empty_words=False):
         tmp = snode
         snode = tnode
         tnode = tmp
-      identity = get_reference(snode.label)
-      if identity is None:
-        max_index += 1
-        identity = max_index
-        snode.label += "-{}".format(identity)
-
       if trace == '=':
-        tnode.label += "={}".format(identity)
+        identity = get_reference(tnode.label)
+        if identity is None:
+          max_index += 1
+          identity = max_index
+          tnode.label += "-{}".format(identity)
+  
+        snode.label += "={}".format(identity)
       else:
+        identity = get_reference(snode.label)
+        if identity is None:
+          max_index += 1
+          identity = max_index
+          snode.label += "-{}".format(identity)
+  
         tnode.subtrees[0].word += "-{}".format(identity)
 
   return root
